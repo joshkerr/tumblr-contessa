@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" itemscope itemtype="http://schema.org/Blog">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title> <meta name=”title” content=”{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}” /> 
+
+	<meta name=”description” content=”{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title} - {Description}” /> 
+
+	<meta name=”keywords” content=”{block:Permalink}{block:Posts}{block:Tags}{Tag}, {/block:Tags}{/block:Posts}{/block:Permalink}” />
+	<meta name="author" content="Josh Kerr" />
+	<link href="/rss" rel="alternate" title="joshkerr / blog" type="application/atom+xml" />
+	<meta name="if:Show Google Plus One Buttons" content="1" />	
+	<meta name="if:Show Facebook Buttons" content="1" />
+	<meta name="if:Show Twitter Buttons" content="1" />
+	<meta name="if:Show Social Buttons" content="0" />
+	
+	<!-- START For Facebook Open Graph -->
+	  <meta property="fb:admins" content="thejoshkerr"/>
+	  <meta property="fb:app_id" content="217515894994625"/>
+	  <meta property="og:locale" content="en_US" />
+	
+	{block:PostSummary}
+	<meta property="og:title" content="{PostSummary} - {Name}" />
+	<meta itemprop="name" content="{Name}">
+	<meta itemprop="description" content="{PostSummary}">
+	{/block:PostSummary}
+	<meta property="og:url" content="{Permalink}" />
+	<meta property="og:type" content="article" />
+
+	{block:Posts}
+	{block:Photo}<meta property="og:image" content="{PhotoURL-500}" />    {/block:Photo}
+	{block:Text}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Text}
+	{block:Photoset}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Photoset}
+	{block:Quote}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Quote}
+	{block:Link}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Link}
+	{block:Chat}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Chat}
+	{block:Audio}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Audio}
+	{block:Video}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Video}
+	{block:Answer}<meta property="og:image" content="{PortraitURL-128}" /> {/block:Answer}
+	{/block:Posts}
+	<meta property="og:description" content="{MetaDescription}" />
+	<meta itemprop="description" content="{MetaDescription}">
+	<!-- For Facebook Open Graph END -->
+	
+	
+	<link rel="stylesheet" href="http://joshkerr.s3.amazonaws.com/tumblr/stylesheets/master.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="http://joshkerr.s3.amazonaws.com/tumblr/stylesheets/webkit-scrollbar.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="http://joshkerr.s3.amazonaws.com/tumblr/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
+	<script src="http://joshkerr.s3.amazonaws.com/tumblr/javascripts/libs.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://joshkerr.s3.amazonaws.com/tumblr/javascripts/main.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://joshkerr.s3.amazonaws.com/tumblr/javascripts/webkit-scrollbar.js" type="text/javascript" charset="utf-8"></script>
+	
+
+	<script src="http://www.google.com/jsapi?key=ABQIAAAAarxOLshUVagsig-qsY3_qhSfg6I2xArgT2x05iJklJb_Aj-nMhQBiX8D0wFTIau-ojB8kFAUMXubEw" type="text/javascript">
+	</script>
+	
+
+	
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=217515894994625";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-9009358-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		if (document.location.host.indexOf("joshkerr.com") == -1) {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);	
+		};
+	})();
+
+</script>
+
+<div id="universe">
+	
+	<div id="header">
+		<div id="title">
+			<a href="/">Josh Kerr</a>
+		</div>
+		<div id="navigation">						
+			<a href="/">Home</a>			
+			{block:HasPages}
+				{block:Pages}
+					<a href="{URL}">{Label}</a>
+					{/block:Pages}			
+			{/block:HasPages}
+			<a href="/archive">Archives</a>
+			<a href="/ask">Contact</a>
+		</div>
+		
+		
+		<div class="clear"></div>
+	</div>
+	
+	
+	
+	<div class="post-world">
+		
+		<div id="cse" style="width:100%;display:none;">
+			<h2>Search Results</h2>
+			
+		</div> 
+		
+		{block:Posts}
+		
+		<div class="post-item">
+			<div class="post-meta">
+			    <p class="date"><i>{DayOfMonth}</i><b>{ShortMonth}</b></p>
+			</div>
+
+
+
+			{block:Text}
+				{block:Title}
+				<h1 class="post-title">
+					<a href="{Permalink}">{Title}</a>
+					<div class="post-title-sub">
+						by Josh Kerr – tags:
+						{block:Tags} <a href="/tagged/{Tag}/" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+						{block:IndexPage}
+						<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 
+						{/block:IndexPage}
+					</div>
+				</h1>
+				{/block:Title}
+			<div class="post-content">
+				{Body}
+			</div>
+			{/block:Text}
+			
+			{block:Photo}
+			<h1 class="post-title">
+				<a href="{Permalink}">{PostType}</a>
+				<div class="post-title-sub">
+					by Josh Kerr – tags:
+					{block:Tags} <a href="/tagged/{Tag}" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+					{block:IndexPage}
+					<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 					
+					{/block:IndexPage}
+				</div>
+			</h1>
+			
+			    {LinkOpenTag}
+			        <a href="{PhotoURL-HighRes}"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
+			    {LinkCloseTag}
+
+			    {block:Caption}
+			        {Caption}
+			    {/block:Caption}
+			{/block:Photo}
+			
+			{block:Link}
+			<h1 class="post-title">
+				<a href="{URL}">{Name}</a>
+				<div class="post-title-sub">
+					by Josh Kerr – tags:
+					{block:Tags} <a href="/tagged/{Tag}" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+					{block:IndexPage}
+					<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 
+					{/block:IndexPage}
+				</div>
+			</h1>
+			<div class="post-content">
+				{block:Description}
+					{Description}
+				{/block:Description}
+			</div>
+			{/block:Link}
+			
+			{block:Video}
+			<h1 class="post-title">
+				<a href="{URL}">{PostType}</a>
+				<div class="post-title-sub">
+					by Josh Kerr – tags:
+					{block:Tags} <a href="/tagged/{Tag}" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+					{block:IndexPage}
+					<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 
+					{/block:IndexPage}
+				</div>
+			</h1>
+			
+			   {Video-500}
+
+			    {block:Caption}
+			        {Caption}
+			    {/block:Caption}
+			{/block:Video}
+			
+
+		    {block:Quote}
+				<h1 class="post-title">
+					<a href="{URL}">{PostType}</a>
+					<div class="post-title-sub">
+						by Josh Kerr – tags:
+						{block:Tags} <a href="/tagged/{Tag}" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+						{block:IndexPage}
+						<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 
+						{/block:IndexPage}
+					</div>
+				</h1>		
+			
+					<blockquote>
+                        "{Quote}"
+					</blockquote>
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+
+             {/block:Quote}
+				
+				
+			{block:Photoset}
+			<h1 class="post-title">
+				<a href="{Permalink}">{PostType}</a>
+				<div class="post-title-sub">
+					by Josh Kerr – tags:
+					{block:Tags} <a href="/tagged/{Tag}" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+					{block:IndexPage}
+					<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 					
+					{/block:IndexPage}
+				</div>
+			</h1>
+
+                    {Photoset-500}
+
+                    {block:Caption}
+                        <div class="caption">{Caption}</div>
+                    {/block:Caption}
+
+            {/block:Photoset}
+			
+		    {block:Chat}
+			
+			<h1 class="post-title">
+
+				<a href="{Permalink}">{PostType}</a>
+
+				<div class="post-title-sub">
+					by Josh Kerr – tags:
+					{block:Tags} <a href="/tagged/{Tag}" rel="tag"><i class="hash">#</i>{Tag}</a>{/block:Tags}
+					{block:IndexPage}
+					<iframe id="fb_comments_frame" src="http://www.facebook.com/plugins/comments.php?href={Permalink}&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 
+					{/block:IndexPage}
+				</div>
+			</h1>
+			  
+               <ul class="chat">
+                   {block:Lines}
+                       <li class="{Alt} user_{UserNumber}">
+                           {block:Label}
+                               <span class="label">{Label}</span>
+                           {/block:Label}
+
+                           {Line}
+                       </li>
+                   {/block:Lines}
+               </ul>
+           {/block:Chat}
+		   
+		   {block:Audio}
+                   {AudioPlayerBlack}
+                   {block:Caption}
+                       <div class="caption">{Caption}</div>
+                   {/block:Caption}
+           {/block:Audio}
+							
+			
+				
+			<div id="social-sharing">
+				
+				{block:IfShowGooglePlusOneButtons}
+				<div id="google-sharing">
+				
+				
+				  <!-- Place this tag where you want the +1 button to render -->
+				  <g:plusone href="{Permalink}" size="medium" annotation="none"></g:plusone>
+
+				  <!-- Place this render call where appropriate -->
+				  <script type="text/javascript">
+				    (function() {
+				      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				      po.src = 'https://apis.google.com/js/plusone.js';
+				      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+				    })();
+				  </script>
+				
+				</div>
+				{/block:IfShowGooglePlusOneButtons}
+				
+				{block:IfShowTwitterButtons}				
+				<div id="twitter-sharing">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="{Permalink}" data-text="{PostSummary}" data-via="joshkerr" data-count="none">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+				{/block:IfShowTwitterButtons}				
+				{block:IfShowFacebookButtons}							
+				<div id="facebook-sharing">
+			<div class="fb-like" data-href="{Permalink}" data-send="true" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+				</div>
+				{/block:IfShowFacebookButtons}							
+			</div>
+			
+		</div>
+		
+		
+		
+	
+		{/block:Posts}
+		
+		{block:PermalinkPage}
+			<div class="fb-comments" data-href="{Permalink}" data-num-posts="5" data-width="600"></div>
+		{/block:PermalinkPage}
+	
+		</div>
+		
+	
+	
+	<div class="sidebar">
+		
+		<div class="about-me">
+			<h1>&nbsp;</h1>
+			<a href="http://en.gravatar.com/userimage/26047/4c965b2d0c0a5c6fdbdf6148ab61e204.jpg" class="fancybox no-title avatar"><img src="http://en.gravatar.com/userimage/26047/4c965b2d0c0a5c6fdbdf6148ab61e204.jpg" alt="" /></a>
+			<div class="description">
+				<p>
+					{Description}
+				</p>
+		
+				<div class="clear"></div>
+				
+				<span class="sublink">subscribe</span>
+				<div class="fb-subscribe" data-href="https://www.facebook.com/thejoshkerr" data-layout="button_count" data-show-faces="false" data-width="100"></div>
+				
+				<div id="twitter-subscribe">
+				<a href="https://twitter.com/joshkerr" class="twitter-follow-button" data-show-count="false">Follow @joshkerr</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+				
+				<div class="clear"></div>
+			{block:IfShowSocialButtons}				
+				<ul id="social-links">
+					<a id="morelink" href="http://www.google.com/search?q=%22Josh%20Kerr%22" onclick="_gaq.push(['_trackEvent', 'linkTo', 'google', this.href]);">more</a>
+					<li id="twitter-icon"><a href="http://www.twitter.com/joshkerr"><img src="http://joshkerr.s3.amazonaws.com/tumblr/images/social-icons/24-twitter.png"></a></li>
+					<li id="facebook-icon"><a href="http://www.facebook.com/thejoshkerr"><img src="http://joshkerr.s3.amazonaws.com/tumblr/images/social-icons/24-facebook.png"></a></li>
+					<li id="linkedin-icon"><a href="http://www.linkedin.com/in/joshkerr"><img src="http://joshkerr.s3.amazonaws.com/tumblr/images/social-icons/24-linkedin.png"></a></li>
+					<li id="flickr-icon"><a href="http://www.flickr.com/photos/joshkerr/"><img src="http://joshkerr.s3.amazonaws.com/tumblr/images/social-icons/24-flickr.png"></a></li>
+					<li id="youtube-icon"><a href="http://www.youtube.com/joshkerr/"><img src="http://joshkerr.s3.amazonaws.com/tumblr/images/social-icons/24-youtube.png"></a></li>
+					
+				</ul>								
+			{/block:IfShowSocialButtons}								
+
+			</div>
+
+		</div>
+
+		<div class="section recent-articles">
+			<h2>Latest Tweets</h2>		
+			<div id="uline"></div>
+		<div id="twitter_update_list"></div>
+		</div>
+		
+		<div class="section recent-articles">
+			<h2>Featured Posts</h2>
+		<div id="featuredPosts"><p>Loading...</p></div>
+		</div>
+		
+		
+		<div class="section recent-articles">
+			<h2>Recent Posts</h2>
+		<div id="recentPosts"><p>Loading...</p></div>
+		</div>	
+		
+		<div class="section recent-articles">
+			<h2>Search</h2>
+		<div id="recentPosts">
+			
+			<p>Powered by Google Custom Search use the search box below to find content on my site.</p>
+			
+		<div id="cse-search-form" style="width: 100%;">Loading</div>
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript"> 
+		  var _gaq = _gaq || [];
+		  _gaq.push(["_setAccount", "UA-9009358-1"]);
+		  function _trackQuery(control, searcher, query) {
+		    var loc = document.location;
+		    var url = [
+		      loc.pathname,
+		      loc.search,
+		      loc.search ? '&' : '?',
+		      encodeURIComponent('q'),
+		      '=',
+		      encodeURIComponent(query)
+		    ];
+		    _gaq.push(["_trackPageview", url.join('')]);
+		  }
+
+		  google.load('search', '1', {language : 'en'});
+		  google.setOnLoadCallback(function() {
+		    var customSearchOptions = {};
+  
+		    var imageSearchOptions = {};
+		    imageSearchOptions['layout'] = google.search.ImageSearch.LAYOUT_COLUMN;
+		    customSearchOptions['enableImageSearch'] = true;
+		    customSearchOptions['imageSearchOptions'] = imageSearchOptions;
+  
+		    var customSearchControl = new google.search.CustomSearchControl(
+		      '002670987270344031863:3efrgc5bkpo', customSearchOptions);
+
+		    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+		    customSearchControl.setSearchStartingCallback(null, _trackQuery);
+		    var options = new google.search.DrawOptions();
+		    options.setSearchFormRoot('cse-search-form');
+		    customSearchControl.draw('cse', options);
+			customSearchControl.setLinkTarget(google.search.Search.LINK_TARGET_SELF);
+			
+		  }, true);
+		</script>
+		</div>
+		</div>	
+		
+			
+		
+	</div>
+	<div class="clear"></div>
+	
+	
+	<div class="post-paginator">
+		{block:PreviousPage}
+			<a href="{PreviousPage}" class="older">&larr; newer</a>
+		{/block:PreviousPage}
+		
+		{block:NextPage}
+			<a href="{NextPage}" class="newer">older &rarr;</a>
+		{/block:NextPage}
+		
+	</div>
+</div>
+
+<div id="footer">Copyright &copy; {CopyrightYears} Josh Kerr</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>	
+<!-- Put this at the bottom of the page -->
+
+<script type="text/javascript">
+ 
+// Grab, Parse, Display
+ 
+    google.load("feeds", "1");
+     
+    function OnLoad() {
+     	var recentPosts = new google.feeds.FeedControl();
+	 	var featuredPosts = new google.feeds.FeedControl();
+		
+    	featuredPosts.setNumEntries(5);
+    	featuredPosts.addFeed("http://joshkerr.com/tagged/featured/rss");     
+    	featuredPosts.draw(document.getElementById("featuredPosts"));
+		
+		
+     	recentPosts.setNumEntries(10);
+     	recentPosts.addFeed("http://joshkerr.com/rss");     
+     	recentPosts.draw(document.getElementById("recentPosts"));
+    	
+    	
+   }
+	
+     
+    google.setOnLoadCallback(OnLoad);
+</script>
+
+	<script src="http://twitter.com/javascripts/blogger.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://twitter.com/statuses/user_timeline/joshkerr.json?callback=twitterCallback2&count=2" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>
+

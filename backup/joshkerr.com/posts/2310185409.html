@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <!-- BEGIN TUMBLR XML
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <post id="2310185409" url="http://joshkerr.com/post/2310185409" url-with-slug="http://joshkerr.com/post/2310185409" type="regular" date-gmt="2010-12-14 06:50:25 GMT" date="Tue, 14 Dec 2010 00:50:25" unix-timestamp="1292309425" format="html" reblog-key="iUkmSkKJ" slug="video-tagging-automation-with-iflicks-and-hazel"><regular-title>Video tagging automation with iFlicks and Hazel </regular-title><regular-body>&lt;p&gt;The latest beta version of iFlicks will transcode HD versions of mkv files into iTunes compatible mp4 files without re-encoding the video.  With this and Hazel, a Mac automation app, I&amp;#8217;ve got an automated way of converting and tagging my video files.&lt;/p&gt;
+
+&lt;p&gt;First, you need to download the beta version of iFlicks.  You can get it from the iFlicks &lt;a href="http://groups.google.com/group/iflicks/topics"&gt;Google group&lt;/a&gt;.  Just search around and you&amp;#8217;ll find the link.&lt;/p&gt;
+
+&lt;p&gt;Now that iFlicks is installed, you&amp;#8217;ll need to download and install Hazel.  You can get it from &lt;a href="http://www.noodlesoft.com/hazel.php"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now you&amp;#8217;ll need to configure your Hazel rules.  Lets pretend that you use a program like &lt;a href="http://www.sabnzbd.org"&gt;SABNzbd&lt;/a&gt; to download TV shows or Movies (non copyrighted of course) from the Internet.  I would normally have them in either my Movie or TV folder depending on the type.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://joshkerr.s3.amazonaws.com/images/Finder.png"&gt;&lt;img src="http://joshkerr.s3.amazonaws.com/images/Finder.png" alt="Finder"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we can configure Hazel to automatically load our mkv files into iFlicks and clean up the folders when it is done.  This is what my list of rules looks like for my Movies folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://joshkerr.s3.amazonaws.com/images/Hazel%20Window.png"&gt;&lt;img src="http://joshkerr.s3.amazonaws.com/images/Hazel%20Window.png" alt="Hazel Window"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ve got three rules that you&amp;#8217;ll need to create: 
+
+&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Encode Video - loads the mkv file into iFlicks for encoding and tagging&lt;/li&gt;
+&lt;li&gt;Delete NFO files - this cleans out the directory from the left over garbage leaving an empty folder&lt;/li&gt;
+&lt;li&gt;Process sub folders - this will go into sub folders and run the previous two rules.  If the folder is empty it will delete it&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href="http://joshkerr.s3.amazonaws.com/images/Encode%20Video.png"&gt;&lt;img src="http://joshkerr.s3.amazonaws.com/images/Encode%20Video.png" alt="Encode Video"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The encode video rule first looks for a file over 500mb that ends in mkv.  It also checks that it does not have a color label.  This is important as the label signifies that a video is being procoessed.  Since processing can take several minutes, you don&amp;#8217;t want Hazel to keep adding the same video to iFlicks.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://joshkerr.s3.amazonaws.com/images/Delete%20info%20files.png"&gt;&lt;img src="http://joshkerr.s3.amazonaws.com/images/Delete%20info%20files.png" alt="Delete info files"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The delete NFO files rule just removes the meaningless files left over after processing the video.  When done I should have an empty folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://joshkerr.s3.amazonaws.com/images/Remove%20subfolders.png"&gt;&lt;img src="http://joshkerr.s3.amazonaws.com/images/Remove%20subfolders.png" alt="Remove subfolders"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The process subfolders rule does two things.  First it dives into subfolders and runs the previous two rules.  Second it looks for empty folders and runs a script to delete them. &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+tell application "Finder"&lt;br/&gt;
+  set theContents to entire contents of theFile&lt;br/&gt;
+  if theContents = {} then&lt;br/&gt;
+   delete theFile&lt;br/&gt;
+  end if&lt;br/&gt;
+end tell
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you configure your TV folder to run the same way, you&amp;#8217;ll end up with an automated way to process your downloaded mkv files using Hazel and iFlicks.  It took me a while to finally come up with a reliable automated solution.  I&amp;#8217;d like to see iFlicks handle most of this without the need for using Hazel, but for now this is working pretty well.&lt;/p&gt;</regular-body><tag>video</tag><tag>tagging</tag><tag>automation</tag><tag>tips</tag><tag>mac</tag><tag>iflicks</tag><tag>hazel</tag></post>
+
+        END TUMBLR XML -->
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3" />
+    	<meta name="backup-date" content="Sat, 14 Jan 12 20:09:11 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="regular_body">
+                
+        <div class="post_meta">
+            <span class="timestamp">December 14, 2010, 12:50 am</span>
+            
+        </div>
+        
+        <h1>Video tagging automation with iFlicks and Hazel </h1><div><p>The latest beta version of iFlicks will transcode HD versions of mkv files into iTunes compatible mp4 files without re-encoding the video.  With this and Hazel, a Mac automation app, I&#8217;ve got an automated way of converting and tagging my video files.</p>
+
+<p>First, you need to download the beta version of iFlicks.  You can get it from the iFlicks <a href="http://groups.google.com/group/iflicks/topics">Google group</a>.  Just search around and you&#8217;ll find the link.</p>
+
+<p>Now that iFlicks is installed, you&#8217;ll need to download and install Hazel.  You can get it from <a href="http://www.noodlesoft.com/hazel.php">here</a>.</p>
+
+<p>Now you&#8217;ll need to configure your Hazel rules.  Lets pretend that you use a program like <a href="http://www.sabnzbd.org">SABNzbd</a> to download TV shows or Movies (non copyrighted of course) from the Internet.  I would normally have them in either my Movie or TV folder depending on the type.</p>
+
+<p><a href="http://joshkerr.s3.amazonaws.com/images/Finder.png"><img src="http://joshkerr.s3.amazonaws.com/images/Finder.png" alt="Finder"/></a></p>
+
+<p>Now we can configure Hazel to automatically load our mkv files into iFlicks and clean up the folders when it is done.  This is what my list of rules looks like for my Movies folder.</p>
+
+<p><a href="http://joshkerr.s3.amazonaws.com/images/Hazel%20Window.png"><img src="http://joshkerr.s3.amazonaws.com/images/Hazel%20Window.png" alt="Hazel Window"/></a></p>
+
+<p>I&#8217;ve got three rules that you&#8217;ll need to create: 
+
+</p><ul><li>Encode Video - loads the mkv file into iFlicks for encoding and tagging</li>
+<li>Delete NFO files - this cleans out the directory from the left over garbage leaving an empty folder</li>
+<li>Process sub folders - this will go into sub folders and run the previous two rules.  If the folder is empty it will delete it</li>
+</ul><p><a href="http://joshkerr.s3.amazonaws.com/images/Encode%20Video.png"><img src="http://joshkerr.s3.amazonaws.com/images/Encode%20Video.png" alt="Encode Video"/></a></p>
+
+<p>The encode video rule first looks for a file over 500mb that ends in mkv.  It also checks that it does not have a color label.  This is important as the label signifies that a video is being procoessed.  Since processing can take several minutes, you don&#8217;t want Hazel to keep adding the same video to iFlicks.</p>
+
+<p><a href="http://joshkerr.s3.amazonaws.com/images/Delete%20info%20files.png"><img src="http://joshkerr.s3.amazonaws.com/images/Delete%20info%20files.png" alt="Delete info files"/></a></p>
+
+<p>The delete NFO files rule just removes the meaningless files left over after processing the video.  When done I should have an empty folder.</p>
+
+<p><a href="http://joshkerr.s3.amazonaws.com/images/Remove%20subfolders.png"><img src="http://joshkerr.s3.amazonaws.com/images/Remove%20subfolders.png" alt="Remove subfolders"/></a></p>
+
+<p>The process subfolders rule does two things.  First it dives into subfolders and runs the previous two rules.  Second it looks for empty folders and runs a script to delete them. </p>
+
+<p><code>
+tell application "Finder"<br/>
+  set theContents to entire contents of theFile<br/>
+  if theContents = {} then<br/>
+   delete theFile<br/>
+  end if<br/>
+end tell
+</code></p>
+
+<p>If you configure your TV folder to run the same way, you&#8217;ll end up with an automated way to process your downloaded mkv files using Hazel and iFlicks.  It took me a while to finally come up with a reliable automated solution.  I&#8217;d like to see iFlicks handle most of this without the need for using Hazel, but for now this is working pretty well.</p></div>    </body>
+</html>

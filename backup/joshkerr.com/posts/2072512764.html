@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <!-- BEGIN TUMBLR XML
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <post id="2072512764" url="http://joshkerr.com/post/2072512764" url-with-slug="http://joshkerr.com/post/2072512764" type="regular" date-gmt="2010-11-18 03:24:00 GMT" date="Wed, 17 Nov 2010 21:24:00" unix-timestamp="1290050640" format="html" reblog-key="kC0UArxK" slug="how-to-secure-your-ssh-server"><regular-title>How to secure your SSH server.</regular-title><regular-body>&lt;p&gt;If you are running any variant of Unix or Linux remotely you are probably using SSH to access that system.  This article from &lt;a href="http://www.rackspacecloud.com/blog/2010/11/11/securing-your-ssh-server/"&gt;Rackspace&lt;/a&gt; does a great job telling you how to secure your box so that hackers have a really hard time breaking into your system.&lt;/p&gt;
+&lt;pre&gt;iptables -A INPUT -j ACCEPT -p tcp --dport 22 -s 10.0.0.20 
+iptables -A INPUT -j ACCEPT -p tcp --dport 22 -s 10.0.0.25 
+iptables -A INPUT -j DROP -p tcp --dport 22&lt;/pre&gt;
+&lt;p&gt;&lt;a href="http://www.rackspacecloud.com/blog/2010/11/11/securing-your-ssh-server/"&gt;Read the article&lt;/a&gt;.&lt;/p&gt;</regular-body><tag>tips</tag><tag>admin</tag><tag>linux</tag></post>
+
+        END TUMBLR XML -->
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3" />
+    	<meta name="backup-date" content="Sat, 14 Jan 12 20:09:12 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="regular_body">
+                
+        <div class="post_meta">
+            <span class="timestamp">November 17, 2010, 9:24 pm</span>
+            
+        </div>
+        
+        <h1>How to secure your SSH server.</h1><div><p>If you are running any variant of Unix or Linux remotely you are probably using SSH to access that system.  This article from <a href="http://www.rackspacecloud.com/blog/2010/11/11/securing-your-ssh-server/">Rackspace</a> does a great job telling you how to secure your box so that hackers have a really hard time breaking into your system.</p>
+<pre>iptables -A INPUT -j ACCEPT -p tcp --dport 22 -s 10.0.0.20 
+iptables -A INPUT -j ACCEPT -p tcp --dport 22 -s 10.0.0.25 
+iptables -A INPUT -j DROP -p tcp --dport 22</pre>
+<p><a href="http://www.rackspacecloud.com/blog/2010/11/11/securing-your-ssh-server/">Read the article</a>.</p></div>    </body>
+</html>

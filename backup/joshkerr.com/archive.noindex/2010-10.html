@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3>" />
+    	<meta name="backup-date" content="Sat, 14 Jan 12 20:09:10 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="archive_body">        
+        <div class="post_meta">
+            <span class="timestamp">October 30, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820326555.html">#</a>
+        </div>
+        
+        <h1>Using duplicity to backup your server to Amazon S3</h1><div><p>There is no question that you want your data backed up to the cloud and the cheapest way to do that is by using Amazon S3.  For more people, their hosted servers provide some sort of web based automated backup system.  For those of us that manage our own servers, you’ll need to configure something yourself.  This task can be fairly straight forward and I’ll show you how I’ve configured mine.</p>
+
+<p>The key tool that we are going to use is a program called duplicity which will support incremental encrypted backups to Amazon.  Before we get started you’ll need an Amazon S3 account with a bucket configured for your backups.  I’m not going to show you how to do that in this article as it is pretty straight forward.</p>
+
+<p>Next, you’ll want to choose which directories on your server you want to backup.  For me, I’m backing up the following</p>
+
+<pre>/home/
+/etc/
+/usr/
+/lib/
+/opt/
+/root/
+/var/
+</pre>
+
+<p>This gives me all that I’d need to reconfigure my server in case of complete server failure.  It isn’t a complete drive clone, but I don’t really need that.</p>
+
+<p>To install duplicity, you’ll need to make sure that your apt-get library is up to date.</p>
+
+<pre>apt-get update</pre>
+
+<p>Next you’ll want to install duplicity:</p>
+
+<pre>apt-get install duplicity</pre>
+
+<p>With duplicity installed, all that is left is your backup script.  You probably shouldn’t leave the PASSPHRASE in the script and you will need to replace they [KEY-ID] and [SEC-KEY] with your own Amazon information.  Here is a copy of mine:</p>
+
+<pre>#!/bin/bash
+
+#Log script
+log() { logger -t scriptname "$@"; echo "$@"; }
+
+export AWS_ACCESS_KEY_ID=[KEY-ID]
+export AWS_SECRET_ACCESS_KEY=[SEC-KEY]
+export PASSPHRASE=[PASSWORD]
+
+duplicity /home/ s3+http://joshkerr/joshkerr-com/home/
+duplicity /etc/ s3+http://joshkerr/joshkerr-com/etc/
+duplicity /usr/ s3+http://joshkerr/joshkerr-com/usr/
+duplicity /lib/ s3+http://joshkerr/joshkerr-com/lib/
+duplicity /opt/ s3+http://joshkerr/joshkerr-com/opt/
+duplicity /root/ s3+http://joshkerr/joshkerr-com/root/
+duplicity /var/ s3+http://joshkerr/joshkerr-com/var/
+
+log "Backup completed."
+
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export PASSPHRASE
+</pre>
+
+<p>Its a good thing I posted this article shortly before I decided to upgrade my server to Ubuntu 10.04 LTS because it basically wiped clean my drive.  Hey MediaTemple, where is the heads up?  They do put your old data in the /old folder, but it was way easier to restore from Amazon S3.  Thank you duplicity.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 29, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820327004.html">#</a>
+        </div>
+        
+        <h1>@mailgun: Email interface for your app</h1><div><p><a href="http://mailgun.net/">Mailgun</a> is a service that provides a web-server API for fully managed, scalable email servers.  This is something that I think would work great with a service like <a href="http://www.zosh.com">Zosh</a>.</p>
+
+<p>If you run a web application that needs to process email, the best way to get that email into your app server would be to have it posted.  You provide some sort of secure page and emails are posted via an HTTP POST.  Sendmail will let you do this, but there aren’t a lot of other email servers that have this kind of capability.  This is where Mailgun comes in.  They will post a UTF-8 format email to the URL that you specify.  You get all parts of the email including the attachments and you can process it as if it was ordinary data.  You can even apply pattern matching before the email reaches your app server.</p>
+
+<p>This is very powerful as it can be used to setup routes for certain emails.  For example lets say that we want to assign each user on our system their own @joshkerr.com email address.  Using this system we can easily route all shipping@joshkerr.com emails to a different location than the invoicing@joshkerr.com emails.</p>
+
+<p>Mailgun provides a host of libraries to get you started including Ruby, PHP, Python, Java and C#.  <a href="http://mailgun.net/pricing">Pricing</a> is reasonable and I’m really tempted to use their service for one of my projects.  If anyone has any experience with them, please post to the comments.</p>
+
+<p>Here is some sample code showing an HTTP POST:</p>
+
+<pre># POST <a href="http://host.com/upload"><a href="http://host.com/upload">http://host.com/upload</a></a>
+def upload(request):
+     if request.method == 'POST':
+         sender    = request.POST.get('sender')
+         recipient = request.POST.get('recipient')
+         subject   = request.POST.get('subject', '')
+
+         body_html  = request.POST.get('body-html', '')
+         body_plain = request.POST.get('body-plain', '')
+
+         for key in request.FILES:
+             file = request.FILES[key]
+             # do_something_cool_with(file)
+
+     # Returned text is ignored but HTTP status code matters:
+     # Mailgun wants to see 200, otherwise it will make another attempt
+     return HttpResponse('OK')
+</pre></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 28, 2010, 5:54 am</span>
+            <a class="permalink" href="../posts/4820327665.html">#</a>
+        </div>
+        
+        <h1>PageLines PlatformPro: Wordpress CMS perfection</h1><div><p>PageLines is a premium Wordpress theme maker and they just recently released their <a href="http://www.pagelines.com/demos/platformpro/">PlatformPro</a> theme which is more like a drag and drop content management system for Wordpress than it is a theme.  I&#8217;m using it now on joshkerr.com and the more I dig into it, the more impressed I am with its capabilities to produce a stunning website.  What separates PlatformPro from other standard wordpress themes is the amount of customization that you can perform from the Wordpress admin section.</p>
+
+<p>The theme itself isn&#8217;t so much a theme, but a whole layer of user interface controls which can be easily manipulated via a very simple control panel.  This powerful functionality allows you to take a simple Wordpress blog and add features like: </p>
+
+<p>Universal sidebars, carousels, <a href="http://www.pagelines.com/demos/platformpro/features">feature boxes</a> and much more.  I can&#8217;t stress how easy it is to put together and manage a very powerful and professional looking website with PlatformPro.  Now while all of this sounds great, the PlatformPro product is fairly new and there are a few bugs here and there.  The people at PageLines have been quick to fix them with new releases and upgrading your installation is pretty easy using the built in theme upgrade functionality within Wordpress 3.  I&#8217;m using PlatformPro on several websites now and I&#8217;m pretty happy with it.  For more information check out the <a href="http://www.pagelines.com/">PageLines web site</a>.  It costs $95 and requires Wordpress 3.0 and above with PHP version 5 and above.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 27, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820312762.html">#</a>
+        </div>
+        
+        <h1>Separation between church and Mac?</h1><div><p>I looked at my dock today and noticed a cross sitting where the download folder should reside.  It appears as though my Mac thinks I’m Christian.  I’m actually not, I’m Jewish, but how did I cross get into my dock?  Is it a virus? <br/><br/><img height="309" width="392" alt="There is a cross in my dock" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/ArticlesCross.png"/><br/><br/>It turns out that I had several images both horizontal and vertical sitting in that folder and OSX uses some kind of formula to generate an icon showing you the contents of the folder.  In my case it just ended up being a cross. <br/><br/><img height="491" width="420" alt="The contents of my folder" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/ArticlesContents-of-folder.png"/><br/><br/>And I thought Steve Jobs was trying to convert me…</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 26, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820313086.html">#</a>
+        </div>
+        
+        <h1>The most important startup discussion: Roles &amp; Goals</h1><div><p>Many startups begin with two or more co-founders.  Each co-founder brings a different set of skills to the table and it is critical that each co-founder’s role is clearly defined and that you set agreeable goals otherwise your startup is doom to fail.</p>
+<p><img width="500" alt="Snow Leopard Prowl.jpg" border="0" src="http://joshkerr.s3.amazonaws.com/wp-content/uploads/Snow-Leopard-Prowl.jpg" title="Snow Leopard Prowl.jpg"/><em>The cheetah hunts alone.  His role is clearly defined: Hunt.  His goal: get some dinner.</em></p>
+<p>Right from the beginning, each co-founder will wear different hats.  Some will be responsible for development, some for marketing, some for business development and others for investor relations.  These areas of responsibility should be placed into clearly defined roles with attached goals.</p>
+<h2>What role will you play in your new startup?</h2>
+<p>For example let’s say we define the role of marketing to include public relations and social network out reach.  The goal for the first three months could be to establish a social marketing presence and attain 600 twitter followers and 1000 views to the company’s website.  This marketing role now has a goal and can be assigned to one of the co-founders.</p>
+<p>Each role should be assigned to the person with the best chance for success.  At the end of the first month the group should review the performance of each person and decide on whether the roles need to be changed, goals need to be adjusted or if that person needs to be removed all together from their assigned role.</p>
+<p>Consider this comment by Bob, a co-founder who was assigned with the aforementioned marking role:</p>
+<blockquote>“Hey it wasn’t my fault that we only got 230 twitter followers even though our goal was 600.  John didn’t do enough Tweeting.”</blockquote>
+<p>Actually, it was your fault that you only received 230 twitter followers.  You own the marketing role.  You should’ve done everything in your power to make sure that you hit your numbers.  If John isn’t helping, find someone else who will or do it yourself.</p>
+<p>The other key element to roles is delineating clear authority with regard to decision making.   The co-founders should decide the extent to which each person’s role can make decisions without needing the permission from the group.  This is paramount as it will facilitate much faster iteration.  Every time the co-founders need to meet to make a decision, they waste time so allowing Bob the authority to run a promotion to acquire more twitter users could’ve allowed him to hit his goal.</p>
+<p>With this formula in place, the company will have its best chance for success.  It will also place clear responsibility, ownership, and authority with each of the co-founders and provide a good way to reward future success or punish failure.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 26, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820313385.html">#</a>
+        </div>
+        
+        <h1>ReadWriteWeb gives me a shout-out</h1><div><p>I wrote an article about TestFlight a new service that makes it easier to conduct IOS beta’s and got some nice coverage from ReadWriteWeb.  Thanks guys.</p>
+
+<p><a href="http://www.readwriteweb.com/mobile/2010/10/testflight-improves-ios-beta-testing-process.php">ReadWriteWeb Article</a></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 22, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820313624.html">#</a>
+        </div>
+        
+        <h1>Goldman Sachs is paying Warren Buffet $15 a second.</h1><div><p><a href="http://digg.com/news/worldnews/goldman_sachs_reportedly_paying_warren_buffett_1_3_million_per_day_may_repay_investment">Goldman Sachs is paying Warren Buffet $15 a second.</a><br/></p>
+
+<p>Wow, that is a great investment.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 19, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820314840.html">#</a>
+        </div>
+        
+        <h1>Christina Symanski, a paralyzed woman, demonstrates Zosh</h1><div><p><object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/nBuFTH_CQm0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"><param name="wmode" value="transparent"><param name="allowFullScreen" value="true"><embed src="http://www.youtube.com/v/nBuFTH_CQm0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="400" height="336" allowfullscreen="true" wmode="transparent"></embed></object></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 15, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820315142.html">#</a>
+        </div>
+        
+        <h1>Sneakily Snap Pictures with the Camera Camouflage iPhone App</h1><div><p>An iPhone app that let’s you take sneaky photos of people?  Creepy.   Reminds me of this strange Flickr <a href="http://www.flickr.com/photos/53955993@N04/">page</a> I saw on <a href="http://www.reddit.com/r/WTF/duplicates/drf5r/found_this_guys_flickr_account_accidentlykinda/">Reddit</a>.  That guy would probably love this app.</p>
+
+<blockquote>From Gizmodo:  <a href="http://feeds.gawker.com/~r/gizmodo/full/~3/RzkutEAEJdI/sneakily-snap-pictures-with-the-camera-camouflage-iphone-app">Sneakily Snap Pictures with the Camera Camouflage iPhone App</a>.</blockquote></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 10, 2010, 5:55 am</span>
+            <a class="permalink" href="../posts/4820320178.html">#</a>
+        </div>
+        
+        <h1>iPhone 4 coming to Verizon?</h1><div><p>Everyone seems to think the iPhone is coming to Verizon.  The WSJ and NY Times are both confirming the news.  It wouldnt be the first time that these rumors have been wrong.   I cant see why Apple would want to leak anything about an iPhone on Verizon when it would hurt their holiday sales with people waiting to buy a Verizon phone over AT&amp;T.  Still, the rumor is out there and more people are confirming it.  Would you buy a Verizon iPhone?  I dont think I would.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 6, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820315597.html">#</a>
+        </div>
+        
+        <h1>Mercedes-Benz iPad integration makes no sense.</h1><div><p>Why would Mercedes Benz strap an iPad on the back of a headrest and call it an integration?  Why can’t I buy my own iPad and strap it there myself?  It doesn’t seem to difficult.  Plus, why would I want to surf the web with my iPad attached to the seat?  Its more comfortable to have it in my lap.</p>
+
+<p>If there was a way to AirPlay my iPad to a TV monitor on the back of the seat, that might be a cool integration, but the way things stand now, it is a waste of money.</p>
+
+<p><img src="http://feeds.joshkerr.com/wp-content/uploads/merc-ipad-2010-10-06-6001.jpg" border="0" alt="merc-ipad-2010-10-06-600.jpg" width="500" height="333"/></p>
+
+<p>(Via <a href="http://www.engadget.com">Engadget</a>.)</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 3, 2010, 5:55 am</span>
+            <a class="permalink" href="../posts/4820320609.html">#</a>
+        </div>
+        
+        <h1>Kevin Rose talks about his failures at Digg</h1><div><p>Ive always been a fan of Kevin Rose and Digg used to be a site that I would visit almost daily.  The latest release of Digg has been a failure.  I dont visit it anymore.  Kevin sat in for a tough interview with Michael Arrington on TechCrunch Disrupt.</p>
+
+<p>I give Kevin props for doing the interview, but he blunders his way through the talk and the result doesnt help him or Digg.  He seemed unprepared for these very obvious questions.</p>
+
+<p><img height="266" width="479" alt="MarsEdit.png" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/MarsEdit.png"/></p>
+
+<p>See the <a href="http://kevinrose.com/blogg/2010/10/3/my-techcrunch-disrupt-talk.html">interview</a> on Kevins blog.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 2, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820318482.html">#</a>
+        </div>
+        
+        <h1>How Facebook Can Become Bigger In Five Years Than Google Is Today</h1><div><p>Great Techcrunch article on how Facebook will grow to be bigger than Google.  Might happen…</p>
+
+<p><img height="165" width="500" alt="pacbook.jpeg" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/pacbook.jpeg"/></p>
+
+<blockquote>Remember <a href="http://www.wired.com/techbiz/it/magazine/17-07/ff_facebookwall">three years ago</a>, when Microsoft paid a <a href="http://techcrunch.com/2007/10/24/facebook-takes-the-microsoft-money-and-runs/">quarter-billion dollars</a> for 1.6% of Facebook and the exclusive right to run banner ads across Facebook.com? Tell the truth, how many of you thought that was a killer business decision? I can’t say I did at the time. But as that deal is about to <a href="http://www.facebook.com/press/releases.php?p=8084">expire in 2011</a>, Facebook’s status as a <a href="http://techcrunch.com/2010/09/01/facebook-will-hit-2-billion-2010-revenue-says-mob-of-unofficial-facebook-spokespersons/">revenue juggernaut</a> is rarely <a href="http://www.quora.com/Why-is-Facebook-worth-33-billion-when-it-doesnt-even-have-a-stable-business-model">questioned</a> any more.</blockquote>
+
+<p>(Via <a href="http://techcrunch.com">TechCrunch</a>.)</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 2, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820319263.html">#</a>
+        </div>
+        
+        <h1>Fast Society: Keep up with your friends at a concert</h1><div><p>Fast society is an iPhone app that lets you text message a group of friends but only for a short period of time.  The app is great for concerts, conventions or any other short lived event where you’d want to group message or call people, but once the event is over, don’t want to be bothered.</p>
+
+<p><a href="http://tctechcrunch.files.wordpress.com/2010/10/photo1.png"><img height="450" width="300" src="http://tctechcrunch.files.wordpress.com/2010/10/photo1.png?w=300&amp;h=450" title="photo"/></a> <a href="http://tctechcrunch.files.wordpress.com/2010/10/photo.png"><img height="443" width="300" src="http://tctechcrunch.files.wordpress.com/2010/10/photo.png?w=300&amp;h=443" title="photo"/></a></p>
+
+<p>(Via <a href="http://techcrunch.com">TechCrunch</a>.)</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 2, 2010, 2:00 am</span>
+            <a class="permalink" href="../posts/4820318823.html">#</a>
+        </div>
+        
+        <h1>TestFlightApp: Beta test iPhone apps without using AdHoc?</h1><div><p><img width="500" alt="TestFlightScreenShot" src="http://joshkerr.s3.amazonaws.com/images/TestFlightApp.png"/></p>
+<p>Is it possible that you can run an iPhone app beta without using AdHoc distribution?  Is is possible that your beta users can install the app without even using iTunes?  No jail breaking?</p>
+<p>According to TestFlight App, it is possible.  Users download the app via the web directly to their iPhone to install and test.  I’m skeptical myself and since it is a private beta, I cannot verify, but if it does do what they say it does, than it would really reduce the load of an app developer.  If it does work, chances are good that it will be shutdown by Apple pretty quickly. <a href="http://testflightapp.com/">TestFlightApp</a></p>
+<h3>Update</h3>
+<p>Okay, I got a beta invite and tried it out.  It works.  These are the steps:</p>
+<ul><li>
+<p>Invite users via the TestFlight website to become beta testers for your app.</p>
+</li>
+<li>
+<p>They enter their UDID directly into the TestFlight website.</p>
+</li>
+<li>
+<p>You copy and paste the UDID’s right into the Apple developer portal and generate a certificate for the beta.</p>
+</li>
+<li>
+<p>Install the certificate, create a build and then upload the new build to the test flight website.</p>
+</li>
+<li>
+<p>Testflight will notify your testers that the build is ready and then let them install directly from the web. It certainly simplifies a lot of the headaches associated with performing an iPhone app beta.  There are still some annoying manual steps (like copying the UDID’s,) but TestFlight organizes most of that work so that you can focus on the product.</p>
+</li>
+</ul><p>I’m not sure how much they plan to charge for the service when it goes live, but I imagine that most developers who run regular betas will hop on board for anything under $10 a month.</p>
+<h3>Update 2</h3>
+<p>This service is without a doubt the easiest way to run an adhoc iPhone beta.  I’ve been using it for several months now and it saves me a ton of time.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 30, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2074752188.html">#</a>
+        </div>
+        
+        <h1>Using duplicity to backup your server to Amazon S3</h1><div><p>There is no question that you want your data backed up to the cloud and the cheapest way to do that is by using Amazon S3.  For more people, their hosted servers provide some sort of web based automated backup system.  For those of us that manage our own servers, you&#8217;ll need to configure something yourself.  This task can be fairly straight forward and I&#8217;ll show you how I&#8217;ve configured mine.</p>
+<p>The key tool that we are going to use is a program called duplicity which will support incremental encrypted backups to Amazon.  Before we get started you&#8217;ll need an Amazon S3 account with a bucket configured for your backups.  I&#8217;m not going to show you how to do that in this article as it is pretty straight forward.</p>
+<p>Next, you&#8217;ll want to choose which directories on your server you want to backup.  For me, I&#8217;m backing up the following</p>
+<pre>/home/
+/etc/
+/usr/
+/lib/
+/opt/
+/root/
+/var/
+</pre>
+<p>This gives me all that I&#8217;d need to reconfigure my server in case of complete server failure.  It isn&#8217;t a complete drive clone, but I don&#8217;t really need that.</p>
+<p>To install duplicity, you&#8217;ll need to make sure that your apt-get library is up to date.</p>
+<pre>apt-get update</pre>
+<p>Next you&#8217;ll want to install duplicity:</p>
+<pre>apt-get install duplicity</pre>
+<p>With duplicity installed, all that is left is your backup script.  You probably shouldn&#8217;t leave the PASSPHRASE in the script and you will need to replace they [KEY-ID] and [SEC-KEY] with your own Amazon information.  Here is a copy of mine:</p>
+<pre>#!/bin/bash
+
+#Log script
+log() { logger -t scriptname "$@"; echo "$@"; }
+
+export AWS_ACCESS_KEY_ID=[KEY-ID]
+export AWS_SECRET_ACCESS_KEY=[SEC-KEY]
+export PASSPHRASE=[PASSWORD]
+
+duplicity /home/ s3+http://joshkerr/joshkerr-com/home/
+duplicity /etc/ s3+http://joshkerr/joshkerr-com/etc/
+duplicity /usr/ s3+http://joshkerr/joshkerr-com/usr/
+duplicity /lib/ s3+http://joshkerr/joshkerr-com/lib/
+duplicity /opt/ s3+http://joshkerr/joshkerr-com/opt/
+duplicity /root/ s3+http://joshkerr/joshkerr-com/root/
+duplicity /var/ s3+http://joshkerr/joshkerr-com/var/
+
+log "Backup completed."
+
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export PASSPHRASE
+</pre>
+<p>Its a good thing I posted this article shortly before I decided to upgrade my server to Ubuntu 10.04 LTS because it basically wiped clean my drive.  Hey MediaTemple, where is the heads up?  They do put your old data in the /old folder, but it was way easier to restore from Amazon S3.  Thank you duplicity.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 29, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2074846525.html">#</a>
+        </div>
+        
+        <h1>@mailgun: Email interface for your app</h1><div><p><a href="http://mailgun.net/">Mailgun</a> is a service that provides a web-server API for fully managed, scalable email servers.  This is something that I think would work great with a service like <a href="http://www.zosh.com">Zosh</a>.</p>
+<p>If you run a web application that needs to process email, the best way to get that email into your app server would be to have it posted.  You provide some sort of secure page and emails are posted via an HTTP POST.  Sendmail will let you do this, but there aren&#8217;t a lot of other email servers that have this kind of capability.  This is where Mailgun comes in.  They will post a UTF-8 format email to the URL that you specify.  You get all parts of the email including the attachments and you can process it as if it was ordinary data.  You can even apply pattern matching before the email reaches your app server.</p>
+<p>This is very powerful as it can be used to setup routes for certain emails.  For example lets say that we want to assign each user on our system their own @joshkerr.com email address.  Using this system we can easily route all shipping@joshkerr.com emails to a different location than the invoicing@joshkerr.com emails.</p>
+<p>Mailgun provides a host of libraries to get you started including Ruby, PHP, Python, Java and C#.  <a href="http://mailgun.net/pricing">Pricing</a> is reasonable and I&#8217;m really tempted to use their service for one of my projects.  If anyone has any experience with them, please post to the comments.</p>
+<p>Here is some sample code showing an HTTP POST:</p>
+<pre># POST <a href="http://host.com/upload">http://host.com/upload</a>
+def upload(request):
+     if request.method == 'POST':
+         sender    = request.POST.get('sender')
+         recipient = request.POST.get('recipient')
+         subject   = request.POST.get('subject', '')
+
+         body_html  = request.POST.get('body-html', '')
+         body_plain = request.POST.get('body-plain', '')
+
+         for key in request.FILES:
+             file = request.FILES[key]
+             # do_something_cool_with(file)
+
+     # Returned text is ignored but HTTP status code matters:
+     # Mailgun wants to see 200, otherwise it will make another attempt
+     return HttpResponse('OK')
+</pre></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 28, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088704421.html">#</a>
+        </div>
+        
+        <h1>PageLines PlatformPro: Wordpress CMS perfection</h1><div><p>PageLines is a premium Wordpress theme maker and they just recently released their <a href="http://www.pagelines.com/demos/platformpro/">PlatformPro</a> theme which is more like a drag and drop content management system for Wordpress than it is a theme.  I&#8217;m using it now on joshkerr.com and the more I dig into it, the more impressed I am with its capabilities to produce a stunning website.  What separates PlatformPro from other standard wordpress themes is the amount of customization that you can perform from the Wordpress admin section.</p>
+<p><img height="500" width="415" alt="Google Chrome2.png" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/ArticlesGoogle-Chrome21.png" class="dropshadow"/></p>
+
+<p>The theme itself isn&#8217;t so much a theme, but a whole layer of user interface controls which can be easily manipulated via a very simple control panel.  This powerful functionality allows you to take a simple Wordpress blog and add features like:  <img height="253" width="470" alt="dragdrop2.jpeg" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/Articlesdragdrop2.jpeg"/></p>
+<p>Universal sidebars, carousels, <a href="http://www.pagelines.com/demos/platformpro/features">feature boxes</a> and much more.  I can&#8217;t stress how easy it is to put together and manage a very powerful and professional looking website with PlatformPro.  Now while all of this sounds great, the PlatformPro product is fairly new and there are a few bugs here and there.  The people at PageLines have been quick to fix them with new releases and upgrading your installation is pretty easy using the built in theme upgrade functionality within Wordpress 3.  I&#8217;m using PlatformPro on several websites now and I&#8217;m pretty happy with it.  For more information check out the <a href="http://www.pagelines.com/">PageLines web site</a>.  It costs $95 and requires Wordpress 3.0 and above with PHP version 5 and above.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 27, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088787132.html">#</a>
+        </div>
+        
+        <h1>Separation between church and Mac?</h1><div><p>I looked at my dock today and noticed a cross sitting where the download folder should reside.  It appears as though my Mac thinks I&#8217;m Christian.  I&#8217;m actually not, I&#8217;m Jewish, but how did I cross get into my dock?  Is it a virus? <br/><br/><img height="309" width="392" alt="There is a cross in my dock" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/ArticlesCross.png"/><br/><br/>It turns out that I had several images both horizontal and vertical sitting in that folder and OSX uses some kind of formula to generate an icon showing you the contents of the folder.  In my case it just ended up being a cross. <br/><br/><img height="491" width="420" alt="The contents of my folder" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/ArticlesContents-of-folder.png"/><br/><br/>And I thought Steve Jobs was trying to convert me&#8230;</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 26, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088804168.html">#</a>
+        </div>
+        
+        <h1>ReadWriteWeb gives me a shout-out</h1><div><p>I wrote an article about TestFlight a new service that makes it easier to conduct IOS beta&#8217;s and got some nice coverage from ReadWriteWeb.  Thanks guys.</p>
+<p><a href="http://joshkerr.com/2010/10/02/testflightapp-beta-test-iphone-apps-without-using-adhoc/">Original Article</a></p>
+<p><a href="http://www.readwriteweb.com/mobile/2010/10/testflight-improves-ios-beta-testing-process.php">ReadWriteWeb Article</a></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 26, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088795211.html">#</a>
+        </div>
+        
+        <h1>The most important startup discussion: Roles &amp; Goals</h1><div><p>Many startups begin with two or more co-founders.  Each co-founder brings a different set of skills to the table and it is critical that each co-founder’s role is clearly defined and that you set agreeable goals otherwise your startup is doom to fail. <br/><br/><img height="375" width="600" alt="Snow Leopard Prowl.jpg" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/Snow-Leopard-Prowl.jpg" title="Snow Leopard Prowl.jpg"/><br/><em>The cheetah hunts alone.  His role is clearly defined: Hunt.  His goal: get some dinner.</em> <br/><br/>Right from the beginning, each co-founder will wear different hats.  Some will be responsible for development, some for marketing, some for business development and others for investor relations.  These areas of responsibility should be placed into clearly defined roles with attached goals. <br/><br/></p>
+<h2>What role will you play in your new startup?</h2>
+<p><br/><br/>For example let’s say we define the role of marketing to include public relations and social network out reach.  The goal for the first three months could be to establish a social marketing presence and attain 600 twitter followers and 1000 views to the company’s website.  This marketing role now has a goal and can be assigned to one of the co-founders. <br/><br/>Each role should be assigned to the person with the best chance for success.  At the end of the first month the group should review the performance of each person and decide on whether the roles need to be changed, goals need to be adjusted or if that person needs to be removed all together from their assigned role. <br/><br/>Consider this comment by Bob, a co-founder who was assigned with the aforementioned marking role:</p>
+<blockquote>&#8220;Hey it wasn&#8217;t my fault that we only got 230 twitter followers even though our goal was 600.  John didn&#8217;t do enough Tweeting.&#8221;</blockquote>
+<p><br/>Actually, it was your fault that you only received 230 twitter followers.  You own the marketing role.  You should&#8217;ve done everything in your power to make sure that you hit your numbers.  If John isn&#8217;t helping, find someone else who will or do it yourself. <br/><br/>The other key element to roles is delineating clear authority with regard to decision making.   The co-founders should decide the extent to which each person&#8217;s role can make decisions without needing the permission from the group.  This is paramount as it will facilitate much faster iteration.  Every time the co-founders need to meet to make a decision, they waste time so allowing Bob the authority to run a promotion to acquire more twitter users could&#8217;ve allowed him to hit his goal. <br/><br/>With this formula in place, the company will have its best chance for success.  It will also place clear responsibility, ownership, and authority with each of the co-founders and provide a good way to reward future success or punish failure.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 22, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088823895.html">#</a>
+        </div>
+        
+        <p><a class="link" href="http://digg.com/news/worldnews/goldman_sachs_reportedly_paying_warren_buffett_1_3_million_per_day_may_repay_investment">Goldman Sachs is paying Warren Buffet $15 a second.</a></p> <div><p>Wow, that is a great investment.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 19, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088964567.html">#</a>
+        </div>
+        
+        <iframe width="400" height="300" src="http://www.youtube.com/embed/nBuFTH_CQm0?wmode=transparent&autohide=1&egm=0&hd=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0&showsearch=0" frameborder="0" allowfullscreen></iframe><p>Christina Symanski, a paralyzed woman who cannot use her hands, posted a video demonstration of my iPhone app Zosh using a specialized stylus that she controls with her mouth.  She runs through the demonstration with such ease that I don&#8217;t know if I could&#8217;ve done a better job.</p>
+<p>Zosh lets you fill in and sign documents from your mobile phone.  I started the company with my co-founder and good friend Alexander Bibighaus a few years back as a side project.  In March of this year we released the product and it became an instant hit.</p>
+<p>I&#8217;ve always considered my target audience people that could benefit from not having to be tied down to a fax machine to fill in a form or document and sign it.  Christina fits that mold, but to see her benefit from Zosh without using her hands really made me feel proud of what we built. </p>        
+        <div class="post_meta">
+            <span class="timestamp">October 15, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088968151.html">#</a>
+        </div>
+        
+        <h1>Sneakily Snap Pictures with the Camera Camouflage iPhone App</h1><div><p>An iPhone app that let&#8217;s you take sneaky photos of people?  Creepy.   Reminds me of this strange Flickr <a href="http://www.flickr.com/photos/53955993@N04/">page</a> I saw on <a href="http://www.reddit.com/r/WTF/duplicates/drf5r/found_this_guys_flickr_account_accidentlykinda/">Reddit</a>.  That guy would probably love this app.</p>
+<blockquote>From Gizmodo:  <a href="http://feeds.gawker.com/~r/gizmodo/full/~3/RzkutEAEJdI/sneakily-snap-pictures-with-the-camera-camouflage-iphone-app">Sneakily Snap Pictures with the Camera Camouflage iPhone App</a>.</blockquote></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 9, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088974686.html">#</a>
+        </div>
+        
+        <h1>iPhone 4 coming to Verizon?</h1><div><p>Everyone seems to think the iPhone is coming to Verizon.  The WSJ and NY Times are both confirming the news.  It wouldn&#8217;t be the first time that these rumors have been wrong.   I can&#8217;t see why Apple would want to leak anything about an iPhone on Verizon when it would hurt their holiday sales with people waiting to buy a Verizon phone over AT&amp;T.  Still, the rumor is out there and more people are confirming it.  Would you buy a Verizon iPhone?  I don&#8217;t think I would.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 6, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088988622.html">#</a>
+        </div>
+        
+        <h1>Mercedes-Benz iPad integration makes no sense.</h1><div><p>Why would Mercedes Benz strap an iPad on the back of a headrest and call it an integration?  Why can&#8217;t I buy my own iPad and strap it there myself?  It doesn&#8217;t seem to difficult.  Plus, why would I want to surf the web with my iPad attached to the seat?  Its more comfortable to have it in my lap.</p>
+<p>If there was a way to AirPlay my iPad to a TV monitor on the back of the seat, that might be a cool integration, but the way things stand now, it is a waste of money.</p>
+<p><img src="http://feeds.joshkerr.com/wp-content/uploads/merc-ipad-2010-10-06-6001.jpg" border="0" alt="merc-ipad-2010-10-06-600.jpg" width="500" height="333"/></p>
+<p>(Via <a href="http://www.engadget.com">Engadget</a>.)</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 3, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2088997642.html">#</a>
+        </div>
+        
+        <h1>Kevin Rose talks about his failures at Digg</h1><div><p>I&#8217;ve always been a fan of Kevin Rose and Digg used to be a site that I would visit almost daily.  The latest release of Digg has been a failure.  I don&#8217;t visit it anymore.  Kevin sat in for a tough interview with Michael Arrington on TechCrunch Disrupt.</p>
+<p>I give Kevin props for doing the interview, but he blunders his way through the talk and the result doesn&#8217;t help him or Digg.  He seemed unprepared for these very obvious questions.</p>
+<p><img height="266" width="479" alt="MarsEdit.png" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/MarsEdit.png"/></p>
+<p>See the <a href="http://kevinrose.com/blogg/2010/10/3/my-techcrunch-disrupt-talk.html">interview</a> on Kevin&#8217;s blog.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 2, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2089019447.html">#</a>
+        </div>
+        
+        <h1>TestFlightApp: Beta test iPhone apps without using AdHoc?</h1><div><p><img height="401" width="500" alt="screenshot-full.png" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/screenshot-full.png"/></p>
+<p>Is it possible that you can run an iPhone app beta without using AdHoc distribution?  Is is possible that your beta users can install the app without even using iTunes?  No jailbreaking?</p>
+<p>According to TestFlight App, it is possible.  Users download the app via the web directly to their iPhone to install and test.  I&#8217;m skeptical myself and since it is a private beta, I cannot verify, but if it does do what they say it does, than it would really reduce the load of an app developer.  If it does work, chances are good that it will be shutdown by Apple pretty quickly. ﻿<a href="http://testflightapp.com/"><a href="http://testflightapp.com/">http://testflightapp.com/</a></a></p>
+<p>[Update]</p>
+<p>Okay, I got a beta invite and tried it out.  It works.  These are the steps:</p>
+<ul><li>Invite users via the TestFlight website to become beta testers for your app.</li>
+<li>They enter their UDID directly into the TestFlight website.</li>
+<li>You copy and paste the UDID&#8217;s right into the Apple developer portal and generate a certificate for the beta.</li>
+<li>Install the certificate, create a build and then upload the new build to the test flight website.</li>
+<li>Testflight will notify your testers that the build is ready and then let them install directly from the web.</li>
+</ul><p>It certainly simplifies a lot of the headaches associated with performing an iPhone app beta.  There are still some annoying manual steps (like copying the UDID&#8217;s,) but TestFlight organizes most of that work so that you can focus on the product.</p>
+
+<p>I&#8217;m not sure how much they plan to charge for the service when it goes live, but I imagine that most developers who run regular betas will hop on board for anything under $10 a month.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 2, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2089009309.html">#</a>
+        </div>
+        
+        <h1>How Facebook Can Become Bigger In Five Years Than Google Is Today</h1><div><p>Great Techcrunch article on how Facebook will grow to be bigger than Google.  Might happen&#8230;</p>
+<p><img height="165" width="500" alt="pacbook.jpeg" border="0" src="http://feeds.joshkerr.com/wp-content/uploads/pacbook.jpeg"/></p>
+<blockquote>Remember <a href="http://www.wired.com/techbiz/it/magazine/17-07/ff_facebookwall">three years ago</a>, when Microsoft paid a <a href="http://techcrunch.com/2007/10/24/facebook-takes-the-microsoft-money-and-runs/">quarter-billion dollars</a> for 1.6% of Facebook and the exclusive right to run banner ads across Facebook.com? Tell the truth, how many of you thought that was a killer business decision? I can’t say I did at the time. But as that deal is about to <a href="http://www.facebook.com/press/releases.php?p=8084">expire in 2011</a>, Facebook’s status as a <a href="http://techcrunch.com/2010/09/01/facebook-will-hit-2-billion-2010-revenue-says-mob-of-unofficial-facebook-spokespersons/">revenue juggernaut</a> is rarely <a href="http://www.quora.com/Why-is-Facebook-worth-33-billion-when-it-doesnt-even-have-a-stable-business-model">questioned</a> any more.</blockquote>
+<p>(Via <a href="http://techcrunch.com">TechCrunch</a>.)</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">October 2, 2010, 12:00 am</span>
+            <a class="permalink" href="../posts/2089024975.html">#</a>
+        </div>
+        
+        <h1>Fast Society: Keep up with your friends at a concert</h1><div><p>Fast society is an iPhone app that lets you text message a group of friends but only for a short period of time.  The app is great for concerts, conventions or any other short lived event where you&#8217;d want to group message or call people, but once the event is over, don&#8217;t want to be bothered.</p>
+<p><a href="http://tctechcrunch.files.wordpress.com/2010/10/photo1.png"><img height="450" width="300" src="http://tctechcrunch.files.wordpress.com/2010/10/photo1.png?w=300&amp;h=450" title="photo"/></a> <a href="http://tctechcrunch.files.wordpress.com/2010/10/photo.png"><img height="443" width="300" src="http://tctechcrunch.files.wordpress.com/2010/10/photo.png?w=300&amp;h=443" title="photo"/></a></p>
+<p>(Via <a href="http://techcrunch.com">TechCrunch</a>.)</p></div>
+</body></html>
