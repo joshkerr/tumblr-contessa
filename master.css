@@ -1,10 +1,5 @@
-
-blockquote {
-	width: 500px;
- 	font: italic normal 12pt/1.2em "Lucida Bright";
- 	padding: 10px;
- 	border: 1px #00CCFF solid;
-}
+/* @override 
+	http://joshkerr.s3.amazonaws.com/tumblr/stylesheets/master.css */
 
 
 #uline {
@@ -65,6 +60,8 @@ span.sublink {
 	float: left;
 	color: #bbb;
 	margin-left: 56px;
+	margin-top: 1px;
+	
 	
 }
 
@@ -79,7 +76,9 @@ span.sublink {
 
 
 #twitter_update_list span {
-
+	font-size: 12px;
+	line-height: 1.5;
+	color: #444;
 }
 
 #twitter_update_list span a {
@@ -93,7 +92,7 @@ span.sublink {
 
 #twitter_update_list li a {
 	color: #bbb;
-	padding-left: 8px;
+
 }
 
 #twitter_update_list span a:hover {
@@ -130,56 +129,56 @@ a#morelink {
 
 @font-face {
   font-family: 'Colaborate-ThinRegular';
-  src: url('http://static.tumblr.com/zsdrhf0/a8blxusot/colabthi.eot');
+  src: url('/resources/fonts/ColabThi.eot');
   src: local('Colaborate-Thin Regular'), local('Colaborate-Thin'), url('http://static.tumblr.com/zsdrhf0/gEIlxusak/colabthi.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'ColaborateLightRegular';
-  src: url('http://static.tumblr.com/zsdrhf0/5uPlxuspb/colablig.eot');
+  src: url('/resources/fonts/ColabLig.eot');
   src: local('ColaborateLight Regular'), local('Colaborate-Light'), url('http://static.tumblr.com/zsdrhf0/PFClxusb4/colablig.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Colaborate-RegularRegular';
-  src: url('http://static.tumblr.com/zsdrhf0/5Odlxuspt/colabreg.eot');
+  src: url('/resources/fonts/ColabReg.eot');
   src: local('Colaborate-Regular Regular'), local('Colaborate-Regular'), url('http://static.tumblr.com/zsdrhf0/r9Blxusbk/colabreg.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Colaborate-MediumRegular';
-  src: url('http://static.tumblr.com/zsdrhf0/PYhlxusq5/colabmed.eot');
+  src: url('/resources/fonts/ColabMed.eot');
   src: local('Colaborate-Medium Regular'), local('Colaborate-Medium'), url('http://static.tumblr.com/zsdrhf0/VS4lxusc0/colabmed.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Colaborate-BoldRegular';
-  src: url('http://static.tumblr.com/zsdrhf0/xOklxusql/colabbol.eot');
+  src: url('/resources/fonts/ColabBol.eot');
   src: local('Colaborate-Bold Regular'), local('Colaborate-Bold'), url('http://static.tumblr.com/zsdrhf0/mb0lxuscp/colabbol.ttf') format('truetype');
 }
 
 
 @font-face {
   font-family: 'DejaVuSansMonoBook';
-  src: url('http://static.tumblr.com/zsdrhf0/G0Glxusr2/dejavusansmono.eot');
+  src: url('/resources/fonts/DejaVuSansMono.eot');
   src: local('DejaVu Sans Mono Book'), local('DejaVuSansMono'), url('http://static.tumblr.com/zsdrhf0/FZ2lxusd8/dejavusansmono.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'DejaVuSansMonoOblique';
-  src: url('http://static.tumblr.com/zsdrhf0/bQalxusrg/dejavusansmono-oblique.eot');
+  src: url('/resources/fonts/DejaVuSansMono-Oblique.eot');
   src: local('DejaVu Sans Mono Oblique'), local('DejaVuSansMono-Oblique'), url('http://static.tumblr.com/zsdrhf0/aOVlxusdv/dejavusansmono-oblique.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'DejaVuSansMonoBold';
-  src: url('http://static.tumblr.com/zsdrhf0/r9Zlxusrv/dejavusansmono-bold.eot');
+  src: url('/resources/fonts/DejaVuSansMono-Bold.eot');
   src: local('DejaVu Sans Mono Bold'), local('DejaVuSansMono-Bold'), url('http://static.tumblr.com/zsdrhf0/Trnlxusea/dejavusansmono-bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'DejaVuSansMonoBoldOblique';
-  src: url('http://static.tumblr.com/zsdrhf0/Lmslxuss8/dejavusansmono-boldoblique.eot');
+  src: url('/resources/fonts/DejaVuSansMono-BoldOblique.eot');
   src: local('DejaVu Sans Mono Bold Oblique'), local('DejaVuSansMono-BoldOblique'), url('http://static.tumblr.com/zsdrhf0/VCClxuseo/dejavusansmono-boldoblique.ttf') format('truetype');
 }
 
@@ -199,8 +198,10 @@ html {
 }
 
 body {
-  background: #fff;
-  font: 15px/1.5 'Colaborate-ThinRegular', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 12px;
 }
 
 a {
@@ -273,6 +274,7 @@ table,
 address,
 fieldset {
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 /* @end */
@@ -280,11 +282,12 @@ fieldset {
 /* @group Headings */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'ColaborateLightRegular', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-  font-weight: normal;
+	font-family: 'Open Sans', sans-serif; 
+  font-weight: 700;
 }
   h1.thin, h2.thin, h3.thin, h4.thin, h5.thin, h6.thin {
-    font-family: 'Colaborate-ThinRegular', 'HelveticaNeue-Light', 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
   }
 
 h1 {
@@ -447,7 +450,7 @@ span.fancybox {
 
 
 #navigation {
-  font-size: 15px;
+  font-size: 12px;
   float: left;
   margin: 30px 0px 20px 20px;
 }
@@ -552,26 +555,32 @@ code, pre, .gist, .gist-data, .gist-meta {
 /* @group blockquote */
 
 blockquote {
-  font-family: Georgia, 'Times New Roman', Times;
+	width: 467px;
+   font-family: 'Open Sans', sans-serif;
   font-style: italic;
-  font-size: 16px;
-  line-height: 1.4em;
-  margin: 0px 10px;
-  margin-bottom:20px;
+  font-size: 13px;
+	margin-top: 10px;
+	padding: 15px;
+  color: #444;
+  background-color: #f9f9f9;
+  border:  1px solid #f2f2f2;
 }
   blockquote p {
-    font-size: 15px;
-    line-height: 1.4em;
+    font-size: 13px;
+    line-height: 1.5em;
     margin-bottom: 14px;
     margin-top: 14px;
-    letter-spacing: 1px;
+      color: #444;
+	font-weight: 400;
+
   }
   blockquote b, blockquote strong {
-    font-family: Georgia, 'Times New Roman', Times;
+   font-family: 'Open Sans', sans-serif;
     font-style: italic;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 1.4em;
+    font-size: 13px;
+    line-height: 1.5em;
+      color: #444;
   }
 
 /* @end */
@@ -592,9 +601,11 @@ blockquote {
     
   }
     .sidebar .section h2 {
-      font-size: 17px;
+      font-size: 14px;
+      font-weight: 700;
       margin-bottom: 3px;
       margin-left: 25px;
+      color: #444;
     }
 
 /* @end */
@@ -619,10 +630,15 @@ blockquote {
 
 .post-title {
   position: relative;  
+ line-height: 100%;
+   padding-bottom: 10px;
 }
   .post-title a {
-    color: #000;
+    color: #444;
     border-bottom: 2px solid transparent;
+
+
+
   }
     .post-title a:hover {
       
@@ -634,7 +650,7 @@ blockquote {
 
 .post-title-sub {
   color: #bbb;
-  font-size: 13px;
+  font-size: 12px;
   position: absolute;
   bottom: -13px;
   left: 0px;
@@ -661,10 +677,10 @@ blockquote {
 
 .post-content {
 	padding-top: 10px;
+	font-size: 12px;
+	line-height: 19px;
+
 }
-  .post-content p {
-    text-align: justify;
-  }
 
 /* @group .post-meta */
 
@@ -686,7 +702,9 @@ blockquote {
   }
     .post-meta .date i {
       font-style: normal;
+      font-weight: 700;
       font-size: 24px;
+      padding-bottom: 6px;
       display: block;
     }
     .post-meta .date b {
@@ -832,7 +850,9 @@ blockquote {
 /* @group .about-me */
 
 .about-me {
-  font-size: 13px;
+	color:#444;
+  font-size: 12px;
+	line-height: 1.5;
   margin-bottom: 30px;
 }
   .about-me .avatar {
@@ -886,10 +906,14 @@ blockquote {
 
 
 /* posted in from another site */
-#title a{font-size:24px;margin-top:20px;}
+#title a{
+	font-size: 24px;
+	font-weight: 700;
+	margin-top:57px;
+	float: left;
+}
 
 div.post-content{padding-right:10px;margin-right:10px;}
-blockquote{line-height:1.4em;}
 
 #listed{margin-left:-10px !important;}
 div#archive-list ul{margin-left:-10px;}
@@ -897,14 +921,17 @@ div.embed.video.YouTube{padding-bottom:20px;}
 
 #footer{
 	width: 100%;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
-	margin: 10px;
+	line-height: 1.5;
+	color: #444;
 }
 
-div#tweets{margin-left:30px;padding-top:4px;line-height:24px;}
+div#tweets{margin-left:30px;padding-top:4px;line-height:1.5;}
 div#recentPosts, div#featuredPosts{
 	margin-left:30px;
+	font-size: 12px;
+	line-height: 1.5;
 }
 .gf-snippet{display:none;}
 .gf-relativePublishedDate{display:none !important;}
