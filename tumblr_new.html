@@ -4,12 +4,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" itemscope itemtype="http://schema.org/Blog">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  	<meta name="author" content="Josh Kerr">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <meta name="author" content="Josh Kerr">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title> 
+    <title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title> 
 	<meta name="title" content="{block:PostSummary}{PlaintextPostSummary} - {/block:PostSummary}{PlaintextTitle}" /> 
 	<meta name="description" content="{block:PostSummary}{PlaintextPostSummary} - {/block:PostSummary}{PlaintextTitle} - {PlaintextDescription}" /> 
 	<meta name="keywords" content="{block:Permalink}{block:Posts}{block:Tags}{Tag}, {/block:Tags}{/block:Posts}{/block:Permalink}" />
@@ -18,12 +18,14 @@
 	<meta name="if:Show Google Plus One Buttons" content="0" />	
 	<meta name="if:Show Facebook Buttons" content="0" />
 	<meta name="if:Show Twitter Buttons" content="0" />
+	<meta name="if:Show Pinterest Buttons" content="0" />
 	<meta name="if:Show Facebook Comments" content="0" />
 	<meta name="if:Show Facebook Subscribe Button" content="0" />
 	<meta name="if:Show Twitter Follow Button" content="0" />
 	<meta name="if:Show Subscribe Buttons" content="0" />
 	<meta name="if:Show Recent Posts" content="1" />
 	<meta name="if:Show Featured Posts" content="0" />
+	<meta name="if:Show Related Posts" content="0" />
 	<meta name="if:Show Latest Tweets" content="0" />
 	<meta name="if:Show FB Comment Count" content="0" />	
 	<meta name="text:Facebook Admin Username" content="">
@@ -40,6 +42,7 @@
 	<meta name="text:Num of Tweets" content="2">
 	<meta name="text:Num of Featured" content="5">
 	<meta name="text:Num of Recent" content="10">
+	<meta name="text:Num of Related" content="10">
 	<meta name="text:Byline" content="My Geek Journal">
 	
 	<!-- START For Facebook Open Graph -->
@@ -163,34 +166,12 @@
 				    <h1 class="entry-title"><a href="{Permalink}">{Title}{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
 					{/block:Title}
 				{block:Text}
-				
-				{block:Photo}			
-					<h1 class="entry-title"><a href="{Permalink}">photo{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
-				{/block:Photo}
-				
+								
 				{block:Link}
 					<h1 class="entry-title"><a href="{Permalink}">{Name}{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
 				{/block:Link}
 				
-				{block:Video}			
-					<h1 class="entry-title"><a href="{Permalink}">video{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
-				{/block:Video}
-					
-				{block:Quote}			
-					<h1 class="entry-title"><a href="{Permalink}">quote{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
-				{/block:Quote}
 				
-				{block:PhotoSet}			
-					<h1 class="entry-title"><a href="{Permalink}">photoset{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
-				{/block:PhotoSet}
-				
-				{block:Chat}			
-					<h1 class="entry-title"><a href="{Permalink}">chat{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
-				{/block:Chat}
-				
-				{block:Audio}			
-					<h1 class="entry-title"><a href="{Permalink}">audio{block:RebloggedFrom}By {ReblogRootTitle} –{/block:RebloggedFrom}</a></h1>
-				{/block:Audio}
 				
 				
 								
@@ -198,6 +179,9 @@
 						<time datetime="{block:Date}{MonthNumber}/{DayOfMonth}/{Year} {24HourWithZero}:{Minutes}:{Seconds}{/block:Date}" pubdate data-updated="true">
 					{block:Date}{ShortMonth} {DayOfMonth}, {Year}{/block:Date}
 						</time>
+						
+						{block:Date}| <a href="{Permalink}#disqus_thread">Second article</a>{/block:Date}
+						
 					</p>
 			</header>
 			
@@ -268,7 +252,7 @@
 		      <a rel="full-article" href="{Permalink}">Read on &rarr;</a>
 		    </footer>
 		
-  
+  		  		{block:PermalinkPage}
 		<div id="social-sharing">
 				
 			{block:IfShowGooglePlusOneButtons}
@@ -295,7 +279,16 @@
 	<a href="https://twitter.com/share" class="twitter-share-button" data-url="{Permalink}" data-text="{PostSummary}" data-via="{text:Twitter Username}" data-count="none">Tweet</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
-			{/block:IfShowTwitterButtons}				
+			{/block:IfShowTwitterButtons}		
+		
+			{block:IfShowPinterestButtons}
+				{block:Photo}
+				<div id="pinterest-sharing">		
+				<a href="http://pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-HighRes}&description=" class="pin-it-button" count-layout="none">Pin It</a>
+				</div>
+				{/block:Photo}
+			{/block:IfShowPinterestButtons}
+					
 			{block:IfShowFacebookButtons}							
 			<div id="facebook-sharing">
 		<div class="fb-like" data-href="{Permalink}" data-send="true" data-layout="button_count" data-width="100" data-show-faces="false"></div>
@@ -303,17 +296,21 @@
 			{/block:IfShowFacebookButtons}							
 		</div>
 		
+				{/block:PermalinkPage}
+		
+		
+		
+		
 		</article>
+  
+ 
+  
+  
   
   	{/block:Posts}
 	
-	{block:PermalinkPage}
 
-		{block:IfShowFacebookComments}
-		<div class="fb-comments" data-href="{Permalink}" data-num-posts="5" data-width="500"></div>
-		{/block:IfShowFacebookComments}
 
-	{/block:PermalinkPage}
 	
 	
   
@@ -393,11 +390,9 @@
     	featuredPosts.addFeed(root + "/tagged/featured/rss");     
     	featuredPosts.draw(document.getElementById("featuredPosts"));
 		
-		
      	recentPosts.setNumEntries({text:Num of Recent});
      	recentPosts.addFeed(root + "/rss");     
      	recentPosts.draw(document.getElementById("recentPosts"));
-    	    	
    }	     
     google.setOnLoadCallback(OnLoad);
 </script>
@@ -406,6 +401,54 @@
 {block:IfShowLatestTweets}
 	<script src="http://twitter.com/statuses/user_timeline/{text:Twitter Username}.json?callback=twitterCallback2&count={text:Num of Tweets}" type="text/javascript" charset="utf-8"></script>
 {/block:IfShowLatestTweets}
+{block:IfShowPinterestButtons}
+<!-- Include ONCE for ALL buttons in the page -->
+<script type="text/javascript">
+(function() {
+    window.PinIt = window.PinIt || { loaded:false };
+    if (window.PinIt.loaded) return;
+    window.PinIt.loaded = true;
+    function async_load(){
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        if (window.location.protocol == "https:")
+            s.src = "https://assets.pinterest.com/js/pinit.js";
+        else
+            s.src = "http://assets.pinterest.com/js/pinit.js";
+        var x = document.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+    }
+    if (window.attachEvent)
+        window.attachEvent("onload", async_load);
+    else
+        window.addEventListener("load", async_load, false);
+})();
+</script>
+{/block:IfShowPinterestButtons}
+
+			<script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>{block:Permalink}<div id="disqus_thread"></div>
+			<script type="text/javascript">
+			  /**
+			    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+			    */
+			  (function() {
+			   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			   dsq.src = 'http://joshkerr.disqus.com/embed.js';
+			   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			  })();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=joshkerr">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+			{/block:Permalink}<script type="text/javascript">
+			var disqus_shortname = 'joshkerr';
+			(function () {
+			  var s = document.createElement('script'); s.async = true;
+			  s.src = 'http://joshkerr.disqus.com/count.js';
+			  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+			}());
+			</script>
+
 </body>
 </html>
 
