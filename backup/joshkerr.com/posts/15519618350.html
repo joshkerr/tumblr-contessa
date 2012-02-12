@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <!-- BEGIN TUMBLR XML
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <post id="15519618350" url="http://joshkerr.com/post/15519618350" url-with-slug="http://joshkerr.com/post/15519618350/redis-ohm-and-heroku-make-caching-data-super-fast" type="regular" date-gmt="2011-02-25 06:00:00 GMT" date="Fri, 25 Feb 2011 00:00:00" unix-timestamp="1298613600" format="html" reblog-key="JrI1aFB5" slug="redis-ohm-and-heroku-make-caching-data-super-fast"><regular-title>Redis, Ohm and Heroku make caching data super fast</regular-title><regular-body>&lt;p&gt;My blog is mostly static content. I write the articles, pass them through Jekyll which transforms them into static HTML and then they get pushed up to my Heroku box where they are served. This system works great until you want to have a live activity feed. I&amp;#8217;ve got one on my main page showing the latest from RSS feeds on Twitter, Google Reader, Github and a few others. You could probably manage this in javascript, but Heroku and Ruby came calling so this is how I created my feed.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ScreenShotOfFeed" src="http://joshkerr.s3.amazonaws.com/images/myfeed.png"/&gt;&lt;/p&gt;
+&lt;p&gt;First I thought, okay I&amp;#8217;ll just parse the feeds after the page loads. I hooked in some javascript:&lt;/p&gt;
+&lt;p&gt;Liquid error: No such file or directory - pygmentize -l javascript -f html -O encoding=utf-8&lt;/p&gt;
+&lt;p&gt;Next I thought I&amp;#8217;d just read the feeds. I found this great Ruby gem called &lt;a href="http://github.com/pauldix/feedzirra"&gt;Feedzirra&lt;/a&gt; which fetches and parses RSS and ATOM feeds. Perfect. I implemented it and boom, I had feeds. But I also had a problem. The feeds took time to load and the more URL&amp;#8217;s that I add, the longer they will take. People aren&amp;#8217;t going to sit around waiting for them. Time to cache.&lt;/p&gt;
+&lt;p&gt;At first I thought I would write the feeds to a file on Heroku and then just read that. Not going to happen. Heroku does not let you write local files. So I need to either keep this data in memory, but how?&lt;/p&gt;
+&lt;p&gt;Enter &lt;a href="http://redis.io/"&gt;Redis&lt;/a&gt; a key value store with high performance and low overhead. This will work, but I want to store my Ruby objects in there, how am I going to do that? Enter &lt;a href="http://github.com/soveran/ohm"&gt;Ohm&lt;/a&gt; object hash mapping for Redis. Perfect, now I can write my feed. (I&amp;#8217;m just starting with Ruby, so the following is a hack.)&lt;/p&gt;
+&lt;h3&gt;Model&lt;/h3&gt;
+&lt;p&gt;Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8&lt;/p&gt;
+&lt;h3&gt;Controller&lt;/h3&gt;
+&lt;p&gt;Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8&lt;/p&gt;
+&lt;h3&gt;View&lt;/h3&gt;
+&lt;p&gt;Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;I wrote this code pretty quickly and it would probably scale well. Heroku and Ruby are a pretty powerful &lt;/p&gt;</regular-body></post>
+
+        END TUMBLR XML -->
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3" />
+    	<meta name="backup-date" content="Wed, 08 Feb 12 12:38:03 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="regular_body">
+                
+        <div class="post_meta">
+            <span class="timestamp">February 25, 2011, 12:00 am</span>
+            
+        </div>
+        
+        <h1>Redis, Ohm and Heroku make caching data super fast</h1><div><p>My blog is mostly static content. I write the articles, pass them through Jekyll which transforms them into static HTML and then they get pushed up to my Heroku box where they are served. This system works great until you want to have a live activity feed. I&#8217;ve got one on my main page showing the latest from RSS feeds on Twitter, Google Reader, Github and a few others. You could probably manage this in javascript, but Heroku and Ruby came calling so this is how I created my feed.</p>
+<p><img alt="ScreenShotOfFeed" src="http://joshkerr.s3.amazonaws.com/images/myfeed.png"/></p>
+<p>First I thought, okay I&#8217;ll just parse the feeds after the page loads. I hooked in some javascript:</p>
+<p>Liquid error: No such file or directory - pygmentize -l javascript -f html -O encoding=utf-8</p>
+<p>Next I thought I&#8217;d just read the feeds. I found this great Ruby gem called <a href="http://github.com/pauldix/feedzirra">Feedzirra</a> which fetches and parses RSS and ATOM feeds. Perfect. I implemented it and boom, I had feeds. But I also had a problem. The feeds took time to load and the more URL&#8217;s that I add, the longer they will take. People aren&#8217;t going to sit around waiting for them. Time to cache.</p>
+<p>At first I thought I would write the feeds to a file on Heroku and then just read that. Not going to happen. Heroku does not let you write local files. So I need to either keep this data in memory, but how?</p>
+<p>Enter <a href="http://redis.io/">Redis</a> a key value store with high performance and low overhead. This will work, but I want to store my Ruby objects in there, how am I going to do that? Enter <a href="http://github.com/soveran/ohm">Ohm</a> object hash mapping for Redis. Perfect, now I can write my feed. (I&#8217;m just starting with Ruby, so the following is a hack.)</p>
+<h3>Model</h3>
+<p>Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8</p>
+<h3>Controller</h3>
+<p>Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8</p>
+<h3>View</h3>
+<p>Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8</p>
+<h3>Conclusion</h3>
+<p>I wrote this code pretty quickly and it would probably scale well. Heroku and Ruby are a pretty powerful </p></div>    </body>
+</html>

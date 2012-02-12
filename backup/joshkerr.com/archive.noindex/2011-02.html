@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3>" />
+    	<meta name="backup-date" content="Wed, 08 Feb 12 12:38:03 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="archive_body">        
+        <div class="post_meta">
+            <span class="timestamp">February 25, 2011, 12:00 am</span>
+            <a class="permalink" href="../posts/15519618350.html">#</a>
+        </div>
+        
+        <h1>Redis, Ohm and Heroku make caching data super fast</h1><div><p>My blog is mostly static content. I write the articles, pass them through Jekyll which transforms them into static HTML and then they get pushed up to my Heroku box where they are served. This system works great until you want to have a live activity feed. I&#8217;ve got one on my main page showing the latest from RSS feeds on Twitter, Google Reader, Github and a few others. You could probably manage this in javascript, but Heroku and Ruby came calling so this is how I created my feed.</p>
+<p><img alt="ScreenShotOfFeed" src="http://joshkerr.s3.amazonaws.com/images/myfeed.png"/></p>
+<p>First I thought, okay I&#8217;ll just parse the feeds after the page loads. I hooked in some javascript:</p>
+<p>Liquid error: No such file or directory - pygmentize -l javascript -f html -O encoding=utf-8</p>
+<p>Next I thought I&#8217;d just read the feeds. I found this great Ruby gem called <a href="http://github.com/pauldix/feedzirra">Feedzirra</a> which fetches and parses RSS and ATOM feeds. Perfect. I implemented it and boom, I had feeds. But I also had a problem. The feeds took time to load and the more URL&#8217;s that I add, the longer they will take. People aren&#8217;t going to sit around waiting for them. Time to cache.</p>
+<p>At first I thought I would write the feeds to a file on Heroku and then just read that. Not going to happen. Heroku does not let you write local files. So I need to either keep this data in memory, but how?</p>
+<p>Enter <a href="http://redis.io/">Redis</a> a key value store with high performance and low overhead. This will work, but I want to store my Ruby objects in there, how am I going to do that? Enter <a href="http://github.com/soveran/ohm">Ohm</a> object hash mapping for Redis. Perfect, now I can write my feed. (I&#8217;m just starting with Ruby, so the following is a hack.)</p>
+<h3>Model</h3>
+<p>Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8</p>
+<h3>Controller</h3>
+<p>Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8</p>
+<h3>View</h3>
+<p>Liquid error: No such file or directory - pygmentize -l ruby -f html -O encoding=utf-8</p>
+<h3>Conclusion</h3>
+<p>I wrote this code pretty quickly and it would probably scale well. Heroku and Ruby are a pretty powerful </p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 27, 2011, 3:12 am</span>
+            <a class="permalink" href="../posts/4820409686.html">#</a>
+        </div>
+        
+        <h1>Startup Weekend Austin</h1><div><p>I got the honor of being one of the three judges at <a href="http://austin.startupweekend.org/about/">Startup Weekend Austin</a> today.  There were 10 different groups each presenting a company that they had incubated over the weekend.  The ideas were mostly good, some were downright hilarious and a few seemed to have legs.  I don&#8217;t know that I&#8217;d go out and invest in any one of them, but I&#8217;d certainly consider taking equity in return for a role as an advisor.</p>
+
+<p>Microsoft hosted the event in their new offices in North Austin and they did a great job providing a forum for these entrepreneurs to work in.  Many came from outside of Austin, Dallas, San Antonio and even one guy from Oklahoma.  Most had day jobs and a few were actually fairly successful and looking for something a bit more challenging that their usual routine.</p>
+
+<p>It was fun and in the end we had to choose a winner.  Not easy, but that is the way the game works.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 26, 2011, 6:52 am</span>
+            <a class="permalink" href="../posts/4820405931.html">#</a>
+        </div>
+        
+        <h1>Here is a duck</h1><div><p>You gotta love the moxy.  This is one seriously cute duck.  What is that stuff all over his face?  Looks like he ate another duck.</p>
+
+<p><a href="http://www.flickr.com/photos/cbolts/2738758330/" title="Baby Chick by cboltster, on Flickr"><img src="http://farm4.static.flickr.com/3069/2738758330_8fca97e41c.jpg" width="500" height="333" alt="Baby Chick"/></a></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 23, 2011, 3:16 am</span>
+            <a class="permalink" href="../posts/4820405359.html">#</a>
+        </div>
+        
+        <h1>Ahhh, iPhone OS programming.  Been a while sir.</h1><div><p>It has been too long since I&#8217;ve launched Xcode and with the new 4.0 version, I feel like I&#8217;m learning to program all over again.  I don&#8217;t need to use 4.0, I could continue to use 3.x as Apple will still accept App Store submissions with the older version, but I want to stay current and the new debugger is too good to pass up.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/new_single_window20100721.jpeg" alt="XcodeScreenShot"/></p>
+
+<p>Xcode 4 is a significant upgrade for developers, offering a new IDE with a single view, a mechanism to automatically fix syntax mistakes, and a logic analyzer (not the hardware kind) that will find issues with your code logic.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/new_drag20100721.jpeg" alt="XcodeScreenShot2"/></p>
+
+<p>Since it has been a while since I&#8217;ve written any iOS code, the new version of Xcode feels about as alien as the previous version.  Most of my coding work of late has been in the web or not at all.  I&#8217;m not a full time developer by trade, but I do enjoying writing code when I get the chance.</p>
+
+<p>The one thing that Apple does well that they don&#8217;t quite get enough praise for is their software.  iOS, the dev tools, Final Cut Pro, all of it is really pretty amazing.  Some of the best software available from a commercial source.  Okay, enough praise, back to work.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 14, 2011, 3:13 am</span>
+            <a class="permalink" href="../posts/4820405086.html">#</a>
+        </div>
+        
+        <h1>Great story on about.me acquisition by AOL</h1><div><p><a href="http://www.about.me">About.me</a> ran in private beta for about 3 months before they launched.  Shortly after they did launch (four days) they were acquired by AOL.  Paul Hontz from the <a href="http://thestartupfoundry.com/2011/02/12/why-about-me-was-acquired-by-aol-for-millions-four-days-after-launch/">Startup Foundry</a> wrote a great <a href="http://thestartupfoundry.com/2011/02/12/why-about-me-was-acquired-by-aol-for-millions-four-days-after-launch/">article</a> detailing how they were able to pull off such a quick exit.  It makes for a good read.</p>
+
+<p>In addition to the author&#8217;s points on why they were so successful at attracting users, they also allowed users to reserve their username prior to the launch of the service.  Given the importance of getting your name in the URL, users jumped on the opportunity and this built momentum toward their launch.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/about-me-screenshot.png" alt="AboutScreenShot"/></p>
+
+<p>Incidentally, I joined during the beta and created this <a href="http://about.me/joshkerr">page</a>.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 12, 2011, 3:00 am</span>
+            <a class="permalink" href="../posts/4820403961.html">#</a>
+        </div>
+        
+        <h1>Automatic TV show downloading via Sickbeard on a Mac</h1><div>Do not download copyrighted material for which you do not have permission to download.  I am not condoning copyright infringement in any way.
+<p>If you download TV shows on your computer, chances are good you get them from iTunes.  Nothing wrong with that.  If you are a bit more technical, then you might download your shows from news groups.  If you are even more technical, you use NZB files and download your shows from indexed websites.  If you are even more technical, you’ve got <a href="http://www.sabnzbd.org">Sabnzbd</a> setup and you use that to process your downloads.  In this article, I’m going to show you how to setup <a href="http://sickbeard.com/">Sickbeard</a> to automatically download your TV shows.</p>
+<p><a href="http://joshkerr.s3.amazonaws.com/images/Sickbeard.png"><img width="500" alt="SickBeardPhoto" src="http://joshkerr.s3.amazonaws.com/images/Sickbeard.png"/></a></p>
+<h3>Requirements</h3>
+<ul><li>A mac</li>
+<li>Knowledge of NZB files</li>
+<li>A configured running version of Sabnzbd</li>
+<li>Some technical expertise</li>
+</ul><h3>Instructions</h3>
+<p>First go here and follow this instruction manual:</p>
+<ul><li><a href="http://www.jetshred.com/archive/installing-sickbeard-on-mac-os-10-6/">Good OSX install manual for Sickbeard</a></li>
+</ul><p>Then go here and setup your copy of <a href="http://sickbeard.com/">Sickbeard</a> to load automatically at startup:</p>
+<ul><li><a href="http://sickbeard.com/forums/viewtopic.php?f=3&amp;t=87">How to get Sickbeard to startup automatically at login</a></li>
+</ul><p>Then go here and configure <a href="http://sickbeard.com/">Sickbeard</a> to work with Sabnzbd:</p>
+<ul><li><a href="http://sickbeard.com/forums/viewtopic.php?f=3&amp;t=10">Great how-to manual from the Sickbeard forums</a></li>
+</ul><p>When you are all done, you should have <a href="http://sickbeard.com/">Sickbeard</a> up and running.  Now just add shows and let <a href="http://sickbeard.com/">Sickbeard</a> take care of the rest.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 10, 2011, 6:52 am</span>
+            <a class="permalink" href="../posts/4820406568.html">#</a>
+        </div>
+        
+        <h1>hp launches tablets and phones</h1><div><p>I used to work for Compaq which was acquired by HP.  Compaq was a great place to work and it was my first job out of college.  I should feel loyal to the company and write a raving review about their newly announced tablet and phones.  If they had launched this stuff a year ago, I&#8217;d be pretty enthusiastic, but with the iPad 2 and iPhone 5 on the horizon, HP has a lot of catching up to do.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/hppalmannouncement.png" alt="PalmProducts"/></p>
+
+<p>There is one feature though that I think is pretty innovative.  HP showed how you could browse a web page on the tablet, then bump the phone against the table and the web page link transfers to the phone and then loads.  I&#8217;m not sure what the use case is for this, but it seeing devices communicate wirelessly based on proximity is exciting.</p>
+
+<p>Will I go out and buy a Palm product?  No.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 7, 2011, 3:07 am</span>
+            <a class="permalink" href="../posts/4820404205.html">#</a>
+        </div>
+        
+        <h1>a bash prompt full of color makes a happy terminal</h1><div><p>I spent a lot of time in Terminal the Mac app for executing shell commands.  I&#8217;m using the Bash shell which is the default one on OSX, but I&#8217;ve made a few improvements by enabling colors.  This not only looks better, but makes it easier to determine what is what and where you are.  In the end you will make fewer mistakes and find that your productivity has improved.</p>
+
+<p>Adding color support is simple.  Just open your ~/.bash_profile and add the following lines:</p>
+
+<p>[gist id=905977]</p>
+
+<p>When you are done, you will need to logout.  When you log back on, your Terminal should look something like this:</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/TerminalBash.png" alt="BashPrompt"/></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 6, 2011, 6:52 am</span>
+            <a class="permalink" href="../posts/4820406899.html">#</a>
+        </div>
+        
+        <h1>why i am not watching the super-bowl</h1><div><p>I am not watching the Superbowl this year. At least not yet. For the past six months, I&#8217;ve gone without a TV. It is an experiment to see if I can satisfy my TV watching with downloadable content from the Internet.</p>
+
+<p>Using a combination of iTunes, <a href="http://http://www.netflix.com">Netflix</a> and <a href="http://http://hulu.com">Hulu</a>, I can watch enough TV to be satisfied. The only real thing I miss is live sporting events. This will be the first year that I don&#8217;t watch the super-bowl live. I will watch it after it gets posted online, but for the live event, I&#8217;m missing out.</p>
+
+<p>The tough part for me is not going to ESPN.com and looking up the score. In the end, it will be impossible for me not to know the outcome of the game before I end up watching it. I&#8217;ll try to hold out as long as possible.</p>
+
+<p>Cable TV, beware. I&#8217;m happy without you, so you&#8217;ll need to retool and add some significant value before I come back.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 6, 2011, 3:08 am</span>
+            <a class="permalink" href="../posts/4820404557.html">#</a>
+        </div>
+        
+        <h1>SuperDuper! is the best Mac backup app</h1><div><p>I&#8217;m in love with the Mac app <a href="http://www.shirt-pocket.com/">SuperDuper!</a>.  I am not in love with Time Machine.  Time Machine is a resource hog, it has no configuration options (save for hacking the command line,) and it results in a non-bootable backup.  This means that you&#8217;ll need to reinstall your OS, then restore from Time Machine.</p>
+
+<p>SuperDuper! makes these pains go away.  First, the app creates a bootable image of your current Mac&#8217;s disk.  This means if you ever run into a problem, you can simply boot from an external drive (with that image) and you are back in business.  Buy a new hard drive, clone the image right to that drive.  It couldn&#8217;t be more flexible and I love it.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/SuperDuper!.png" alt="SuperDuperImage"/></p>
+
+<p>SuperDuper! is easy to setup with minimal options.  Just choose the drive to backup and the drive to save the image to.  It could take quite a while to do a full backup, but after the first backup, you can have it to differential backups so that each followup backup goes faster.</p>
+
+<p>For me, Time Machine is disabled and SuperDuper! is keeping me safe.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 5, 2011, 3:14 am</span>
+            <a class="permalink" href="../posts/4820402372.html">#</a>
+        </div>
+        
+        <h1>women laughing alone with salad</h1><div><p>Every now and then I find an amusing list of items.  This one made me laugh so hard I cried.</p>
+
+<p><a href="http://thehairpin.com/2011/01/women-laughing-alone-with-salad/">Women laughing alone with salad</a>:</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/women%20laughing%20alone%20with%20salad.png" alt="SaladPhoto"/></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 5, 2011, 3:09 am</span>
+            <a class="permalink" href="../posts/4820404846.html">#</a>
+        </div>
+        
+        <h1>iffmpeg is a great gui for ffmpeg mac</h1><div><p>I&#8217;m big into movies and I like the <a href="/2010/11/quickly-encode-mkv-to-mv4-compatible-with-ipad/">MKV</a> format for storage, but iOS devices for watching.  Since Apple doesn&#8217;t natively support <a href="/2010/11/quickly-encode-mkv-to-mv4-compatible-with-ipad/">MKV</a>, I&#8217;m forced to remux into MP4.  I&#8217;ve tried a bunch of different tools for doing this, even came up with a <a href="https://github.com/joshkerr/mkvtom4v">bash script</a> (hosted on my <a href="http://github.com/joshkerr">github</a> account,) and now I&#8217;m using <a href="http://www.iffmpeg.com/">iFFmpeg</a>, a new GUI for <a href="http://www.ffmpeg.org">FFmpeg</a>.</p>
+
+<p><a href="http://www.iffmpeg.com/">iFFmpeg</a> is the first GUI That makes it possible for me to easily remux my MKV files into MP4.  Previous attempts at mastering the command-line or other GUI hacks, left me files that aren&#8217;t compatible with Apple devices.  With this app (which I believe is new to the scene,) I can just select the &#8220;video stream passthrough&#8221; option, AAC conversion option and boom, my MKV&#8217;s are magically (and quickly) turned into MP4 files compatible with Apple devices.</p>
+
+<p>My original files start off as 720p video encoded via h264, the audio is usually AC3 or DTS.  The final file has the exact same video with no changes, but audio re-encoded to AAC stereo.  Since my iPad and iPhone can&#8217;t play 5 channel audio, there is no point for me to leave it.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/iFFmpeg.png" alt="iffmpegscreen"/></p>
+
+<p>Using <a href="http://www.iffmpeg.com/">iFFmpeg</a> is simple.  Just drag the video file into the app, choose a codec, and press start.  My favorite feature (other than the quick and high quality conversion) is the very clear indicator in the dock icon that shows how much remuxing (or encoding) is left on the current file.  The author plans to add a total batch indicator as well.</p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/iffmpegdock.png" alt="iffmpegdock"/></p>
+
+<p>The app is 8 euros and requires that you manually install the <a href="http://www.ffmpeg.org">FFmpeg</a> binary.  They provide a link to a <a href="http://ffmpeg.arrozcru.org/builds/">static binary</a> (I chose the 64bit variety) and installing it is as simple as dragging it into the app.</p>
+
+<p>I&#8217;m excited about this app because it uses one of the best video encoding engines [FFmpeg] and it has an author that seems to be really motivated about pushing out new features.   I&#8217;m keeping an eye on this one.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 4, 2011, 6:55 am</span>
+            <a class="permalink" href="../posts/4820407888.html">#</a>
+        </div>
+        
+        <h1>dont break up with an seo expert</h1><div><p>A young guy breaks up with his girlfriend.  The girlfriend apparently knows a thing or two about SEO.  So she takes his professionally taken photo, writes slanderous things on it, and then spams Google Images with it.  Go a google search on &#8220;Jack Weppler&#8221; and you&#8217;ll see it.  Funny stuff.</p>
+
+<p><a href="http://www.seroundtable.com/boyfriend-spammed-12909.html">Original Story</a></p>
+
+<p><img src="http://joshkerr.s3.amazonaws.com/images/JackW.png" alt="CrazyPhoto"/></p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 4, 2011, 6:52 am</span>
+            <a class="permalink" href="../posts/4820406260.html">#</a>
+        </div>
+        
+        <h1>Why I switched to Amazon EC2 hosting and then Heroku</h1><div><p>I used to host my blog at <a href="http://www.mediatemple.com">Media Temple</a> which provided a great virtual dedicated hosting platform called (ve).  The server gives you full control and hosting starts at $30 a month.  Very reasonable and very powerful.  Recently I switched to <a href="http://github.com/mojombo/jekyll">Jekyll</a> for blogging which allows you to pre-generate content so that you only need to deploy static files to your web server.  With a system like this in place, there is no need for a database or app server, just a simple web server.  You could use a system like <a href="http://www.ngnix.org">Ngnix</a> which reduces your overhead pretty significantly.</p>
+
+<p>I&#8217;m currently using an <a href="http://aws.amazon.com">Amazon EC2</a> micro server to host this blog and I plan to eventually move to S3 for hosting as soon as Amazon allows me to point my DNS A records at it.  (They currently only allow CNAME records.)</p>
+
+<p>Setup is not easy on Amazon, you are going to need to configure a complete server so I don&#8217;t recommend it for novice users.  There are freely available pre-built servers that are provided by the Amazon community, but I don&#8217;t recommend those because you really never know what someone else installed.  I&#8217;ve seen root keys embedded in the default profile so that someone could root your box with their own key.</p>
+
+<p>One of the big advantages of Amazon EC2 over a provider like Media Temple is that you can easily spawn a new site based on your old one, test out some new settings, and then shut it down, all without needing to pay more than the few hours of time that you had the server running.  (Amazon bills hourly for servers.)  With Media Temple, I&#8217;m having to throw down a month&#8217;s worth of cash just to turn on a new box.</p>
+
+<p>I would still recommend <a href="http://www.mediatemple.com">Media Temple</a> for those that don&#8217;t want to mess with managing their own servers.  For me, I&#8217;m staying with <a href="http://aws.amazon.com">Amazon EC2</a>.</p>
+
+<h3>Update</h3>
+
+<p>Okay, so I&#8217;m not staying with Amazon EC2.  In the end I switched to <a href="http://www.heroku.com">Heroku</a>.  Part of my blog has a feed that shows you my most recent activity across Google Reader, Github, Twitter, etc..  In order to generate that feed, I need to execute a PHP script.  Or do I?  Turns out I don&#8217;t really need a real-time feed, so I just generate the feed when I deploy another blog posting.</p>
+
+<p>So, with that, I decided to deploy my blog to <a href="http://www.heroku.com">Heroku</a>.  Wow is this thing fast.  So what is <a href="http://www.heroku.com">Heroku</a>?  It is a platform to host Ruby apps.  Why would I choose this over Amazon?  Well for one it is cheap as hell.  (Free for small stuff.)  The other consideration is that this platform uses a pure git workflow which is something that I find very appealing.</p>
+
+<p>I&#8217;ll post up a &#8220;how to host your jekyll blog on Heroku&#8221; article in the near future.</p>
+
+<h3>Update #2</h3>
+
+<p>I just can&#8217;t make up my mind.  I&#8217;m back to <a href="http://http://www.wordpress.org">Wordpress</a>.  My friend Jason&#8217;s company <a href="http://http://www.wpengine.com">WPEngine</a> is a great hosting platform, filling the gap between Wordpress&#8217;s premium hosting service and Wordpress.org&#8217;s host it yourself.  In the end it came down to the tools.  I really wanted a quick and easy way to blog from my mobile phone and Jekyll just didn&#8217;t let me do that.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 3, 2011, 3:07 pm</span>
+            <a class="permalink" href="../posts/4820405667.html">#</a>
+        </div>
+        
+        <h1>automating the creation of posts in jekyll</h1><div><p>I really dig the control that Jekyll afford me to blog using the tools of my choice in the manner I see fit.  I like that I can publish with static files and that what I edit on my local machine is identical to what you see on my blog.</p>
+
+<p>Creating new posts can be a chore however because there are default tags that have to be added to each post.  You can automate this in a bunch of different ways, but I like this way:</p>
+
+<p><a href="http://forrst.com/posts/Jekyll_Workflow_Automation-1hs">Workflow grabbed from Forrst</a></p>
+
+<p>[gist id=905952]</p>
+
+<p>Just add this to your bash_profile to enable simple terminal commands for creating blog entries.  It will use Textmate as the editor, but you can easily swap it out for another.  Make sure to configure the directories correct as the ones above were configured for someone else.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 3, 2011, 3:16 am</span>
+            <a class="permalink" href="../posts/4820402614.html">#</a>
+        </div>
+        
+        <h1>wifi in flight is techno cool</h1><div><p>I&#8217;ve seen many journalists blog about the convenience of accessing the Internet via an airplane flight.  I&#8217;ve been taking regular flights between Austin and San Jose and the flight (Alaska airlines) has wifi.  No only do they have wifi, they have really fast wifi.  I have no idea what technology is required to make this marvel possible, but wow is it cool.</p>
+
+<p>I remember reading about Gizmodo editor Lam&#8217;s first flight on Virgin and having wifi.  He blogged about it as if it was the best thing since sliced bread.  I feel the same way every time I get the opportunity to use it.  How is it that at 35,000 feet I can access the Internet?  Really cool.</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 2, 2011, 2:59 am</span>
+            <a class="permalink" href="../posts/4820403676.html">#</a>
+        </div>
+        
+        <h1>Steven Wright reviews Gucci watch</h1><div><p>I&#8217;m pretty sure this YouTube video review of a Gucci digital watch is done by comedian Steven Wright.  I don&#8217;t know how I found this review, but the guy is hilarious.</p>
+
+<blockquote>
+  <p>This watch is straight Hollywood.  Gucci, gucci, nice, yea know?  (Phone rings)</p>
+</blockquote>
+
+<p>httpv://www.youtube.com/watch?v=84E0aHPDQpM</p></div>        
+        <div class="post_meta">
+            <span class="timestamp">February 1, 2011, 6:53 am</span>
+            <a class="permalink" href="../posts/4820407226.html">#</a>
+        </div>
+        
+        <h1>Apple purposely adds bugs to iOS releases</h1><div><p>I recently read a rant by a user who was testing iOS 4.3 beta 3 and complained that all three beta releases had an annoying bug that caused his folders to disappear on his springboard and the icons set to default layout.  I think Apple is doing this on purpose to prevent users from deploying beta versions.</p>
+
+<p>I could see many reasons for Apple doing this, but the big one is that they enable features in a beta that they wanted tested and then disable them in a release.  Tethering is a good one.  I also think they users of beta copies create more support incidents which can be costly for a company that has such a large customers base.</p>
+
+<p>Either way, I don&#8217;t see why a user would complain about this.  The software is beta for a reason.  End of rant.</p></div>
+</body></html>

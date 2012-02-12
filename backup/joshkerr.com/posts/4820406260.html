@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <!-- BEGIN TUMBLR XML
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <post id="4820406260" url="http://joshkerr.com/post/4820406260" url-with-slug="http://joshkerr.com/post/4820406260/why-i-switched-to-amazon-ec2-hosting-and-then-heroku" type="regular" date-gmt="2011-02-04 12:52:48 GMT" date="Fri, 04 Feb 2011 06:52:48" unix-timestamp="1296823968" format="markdown" reblog-key="t1AZp3dS" slug="why-i-switched-to-amazon-ec2-hosting-and-then-heroku"><regular-title>Why I switched to Amazon EC2 hosting and then Heroku</regular-title><regular-body>&lt;p&gt;I used to host my blog at &lt;a href="http://www.mediatemple.com"&gt;Media Temple&lt;/a&gt; which provided a great virtual dedicated hosting platform called (ve).  The server gives you full control and hosting starts at $30 a month.  Very reasonable and very powerful.  Recently I switched to &lt;a href="http://github.com/mojombo/jekyll"&gt;Jekyll&lt;/a&gt; for blogging which allows you to pre-generate content so that you only need to deploy static files to your web server.  With a system like this in place, there is no need for a database or app server, just a simple web server.  You could use a system like &lt;a href="http://www.ngnix.org"&gt;Ngnix&lt;/a&gt; which reduces your overhead pretty significantly.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;m currently using an &lt;a href="http://aws.amazon.com"&gt;Amazon EC2&lt;/a&gt; micro server to host this blog and I plan to eventually move to S3 for hosting as soon as Amazon allows me to point my DNS A records at it.  (They currently only allow CNAME records.)&lt;/p&gt;
+
+&lt;p&gt;Setup is not easy on Amazon, you are going to need to configure a complete server so I don&amp;#8217;t recommend it for novice users.  There are freely available pre-built servers that are provided by the Amazon community, but I don&amp;#8217;t recommend those because you really never know what someone else installed.  I&amp;#8217;ve seen root keys embedded in the default profile so that someone could root your box with their own key.&lt;/p&gt;
+
+&lt;p&gt;One of the big advantages of Amazon EC2 over a provider like Media Temple is that you can easily spawn a new site based on your old one, test out some new settings, and then shut it down, all without needing to pay more than the few hours of time that you had the server running.  (Amazon bills hourly for servers.)  With Media Temple, I&amp;#8217;m having to throw down a month&amp;#8217;s worth of cash just to turn on a new box.&lt;/p&gt;
+
+&lt;p&gt;I would still recommend &lt;a href="http://www.mediatemple.com"&gt;Media Temple&lt;/a&gt; for those that don&amp;#8217;t want to mess with managing their own servers.  For me, I&amp;#8217;m staying with &lt;a href="http://aws.amazon.com"&gt;Amazon EC2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Update&lt;/h3&gt;
+
+&lt;p&gt;Okay, so I&amp;#8217;m not staying with Amazon EC2.  In the end I switched to &lt;a href="http://www.heroku.com"&gt;Heroku&lt;/a&gt;.  Part of my blog has a feed that shows you my most recent activity across Google Reader, Github, Twitter, etc..  In order to generate that feed, I need to execute a PHP script.  Or do I?  Turns out I don&amp;#8217;t really need a real-time feed, so I just generate the feed when I deploy another blog posting.&lt;/p&gt;
+
+&lt;p&gt;So, with that, I decided to deploy my blog to &lt;a href="http://www.heroku.com"&gt;Heroku&lt;/a&gt;.  Wow is this thing fast.  So what is &lt;a href="http://www.heroku.com"&gt;Heroku&lt;/a&gt;?  It is a platform to host Ruby apps.  Why would I choose this over Amazon?  Well for one it is cheap as hell.  (Free for small stuff.)  The other consideration is that this platform uses a pure git workflow which is something that I find very appealing.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ll post up a &amp;#8220;how to host your jekyll blog on Heroku&amp;#8221; article in the near future.&lt;/p&gt;
+
+&lt;h3&gt;Update #2&lt;/h3&gt;
+
+&lt;p&gt;I just can&amp;#8217;t make up my mind.  I&amp;#8217;m back to &lt;a href="http://http://www.wordpress.org"&gt;Wordpress&lt;/a&gt;.  My friend Jason&amp;#8217;s company &lt;a href="http://http://www.wpengine.com"&gt;WPEngine&lt;/a&gt; is a great hosting platform, filling the gap between Wordpress&amp;#8217;s premium hosting service and Wordpress.org&amp;#8217;s host it yourself.  In the end it came down to the tools.  I really wanted a quick and easy way to blog from my mobile phone and Jekyll just didn&amp;#8217;t let me do that.&lt;/p&gt;</regular-body></post>
+
+        END TUMBLR XML -->
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3" />
+    	<meta name="backup-date" content="Wed, 08 Feb 12 12:38:12 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="regular_body">
+                
+        <div class="post_meta">
+            <span class="timestamp">February 4, 2011, 6:52 am</span>
+            
+        </div>
+        
+        <h1>Why I switched to Amazon EC2 hosting and then Heroku</h1><div><p>I used to host my blog at <a href="http://www.mediatemple.com">Media Temple</a> which provided a great virtual dedicated hosting platform called (ve).  The server gives you full control and hosting starts at $30 a month.  Very reasonable and very powerful.  Recently I switched to <a href="http://github.com/mojombo/jekyll">Jekyll</a> for blogging which allows you to pre-generate content so that you only need to deploy static files to your web server.  With a system like this in place, there is no need for a database or app server, just a simple web server.  You could use a system like <a href="http://www.ngnix.org">Ngnix</a> which reduces your overhead pretty significantly.</p>
+
+<p>I&#8217;m currently using an <a href="http://aws.amazon.com">Amazon EC2</a> micro server to host this blog and I plan to eventually move to S3 for hosting as soon as Amazon allows me to point my DNS A records at it.  (They currently only allow CNAME records.)</p>
+
+<p>Setup is not easy on Amazon, you are going to need to configure a complete server so I don&#8217;t recommend it for novice users.  There are freely available pre-built servers that are provided by the Amazon community, but I don&#8217;t recommend those because you really never know what someone else installed.  I&#8217;ve seen root keys embedded in the default profile so that someone could root your box with their own key.</p>
+
+<p>One of the big advantages of Amazon EC2 over a provider like Media Temple is that you can easily spawn a new site based on your old one, test out some new settings, and then shut it down, all without needing to pay more than the few hours of time that you had the server running.  (Amazon bills hourly for servers.)  With Media Temple, I&#8217;m having to throw down a month&#8217;s worth of cash just to turn on a new box.</p>
+
+<p>I would still recommend <a href="http://www.mediatemple.com">Media Temple</a> for those that don&#8217;t want to mess with managing their own servers.  For me, I&#8217;m staying with <a href="http://aws.amazon.com">Amazon EC2</a>.</p>
+
+<h3>Update</h3>
+
+<p>Okay, so I&#8217;m not staying with Amazon EC2.  In the end I switched to <a href="http://www.heroku.com">Heroku</a>.  Part of my blog has a feed that shows you my most recent activity across Google Reader, Github, Twitter, etc..  In order to generate that feed, I need to execute a PHP script.  Or do I?  Turns out I don&#8217;t really need a real-time feed, so I just generate the feed when I deploy another blog posting.</p>
+
+<p>So, with that, I decided to deploy my blog to <a href="http://www.heroku.com">Heroku</a>.  Wow is this thing fast.  So what is <a href="http://www.heroku.com">Heroku</a>?  It is a platform to host Ruby apps.  Why would I choose this over Amazon?  Well for one it is cheap as hell.  (Free for small stuff.)  The other consideration is that this platform uses a pure git workflow which is something that I find very appealing.</p>
+
+<p>I&#8217;ll post up a &#8220;how to host your jekyll blog on Heroku&#8221; article in the near future.</p>
+
+<h3>Update #2</h3>
+
+<p>I just can&#8217;t make up my mind.  I&#8217;m back to <a href="http://http://www.wordpress.org">Wordpress</a>.  My friend Jason&#8217;s company <a href="http://http://www.wpengine.com">WPEngine</a> is a great hosting platform, filling the gap between Wordpress&#8217;s premium hosting service and Wordpress.org&#8217;s host it yourself.  In the end it came down to the tools.  I really wanted a quick and easy way to blog from my mobile phone and Jekyll just didn&#8217;t let me do that.</p></div>    </body>
+</html>

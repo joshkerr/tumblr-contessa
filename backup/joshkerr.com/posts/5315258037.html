@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <!-- BEGIN TUMBLR XML
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <post id="5315258037" url="http://joshkerr.com/post/5315258037" url-with-slug="http://joshkerr.com/post/5315258037/mounting-unlocking-two-drives-at-startup-with-pgp-wde" type="regular" date-gmt="2011-05-08 21:52:59 GMT" date="Sun, 08 May 2011 16:52:59" unix-timestamp="1304891579" format="markdown" reblog-key="bxenF5ot" slug="mounting-unlocking-two-drives-at-startup-with-pgp-wde"><regular-title>Mounting &amp; unlocking two drives at startup with PGP WDE</regular-title><regular-body>&lt;p&gt;I&amp;#8217;ve got a Macbook Pro which I use for everything.  I live in apps that use a lot of resources like Photoshop, Xcode and Powerpoint.  Speed is important to me and the biggest limiting factor is my HD.  So I pulled out the absolutely useless Macbook Pro DVD drive and replaced with it a HD.  My boot drive is an SSD drive which means fast boot times and fast application load times.  My home folder resides on the 2nd hard drive which has more space and it better suited for lots of reads and writes than a SSD drive.&lt;/p&gt;
+
+&lt;p&gt;This configuration is great, but makes security difficult.  I want encrypted drives so that I rest assured that if I ever loose my notebook, the source code and other valuable documents that I carry around is safe.  I am a PGPWDE (PGP Whole Disk Encryption) user and I&amp;#8217;ve used WDE fairly successfully with a single drive setup, but read really bad things about using it for a dual drive setup.  You see the problem is that your home folder resides on a 2nd disk that doesn’t get mounted until you enter your password after logging in.  This can cause all sorts of problems with the worst of it being corruption.&lt;/p&gt;
+
+&lt;p&gt;Playing around with the PGP command line, I was able to find a way to not only encrypt both drives using WDE, but have them both mount after logging into the bootloader and before the OS even loads.&lt;/p&gt;
+
+&lt;p&gt;This setup is actually pretty simple.  It takes advantage of a feature called Drive Groups for which there is no documentation anywhere.  Here are the steps:&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;Encrypt your boot drive normally.  Lets call this Disk 0.  When it is encrypted, you should have a boot loader screen asking you for your PGP password at bootup.  Now you are ready to go to the next step.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;img src="http://i.imgur.com/uxiQT.png" alt="http://i.imgur.com/uxiQT.png"/&gt;&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;p&gt;You need to encrypt the 2nd drive (the one with your home folder) but you&amp;#8217;ll want to do it via the command line using the add group option:&lt;/p&gt;
+
+&lt;pre&gt; pgpwde —add-group-disk —base-disk (put your boot disk #) —disk (put the 2nd disk #) —auto   —passphrase ‘password’ —user ‘your name’&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;img src="http://i.imgur.com/RJMUh.png" alt="http://i.imgur.com/RJMUh.png"/&gt;&lt;/p&gt;
+
+&lt;p&gt;That should cause your 2nd disk to start encrypting.  It is also instrumented to the bootloader so when you login, it is automatically decrypted and mounted.&lt;/p&gt;
+
+&lt;p&gt;These instructions seems to work fine for Mac OS X Snow Leopard.  I haven’t tried it on any other OS, but because this is all happening before the OS loads, I assume it should work for Windows and Linux.&lt;/p&gt;</regular-body><tag>tips</tag><tag>featured</tag></post>
+
+        END TUMBLR XML -->
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3" />
+    	<meta name="backup-date" content="Wed, 08 Feb 12 12:38:10 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="regular_body">
+                
+        <div class="post_meta">
+            <span class="timestamp">May 8, 2011, 4:52 pm</span>
+            
+        </div>
+        
+        <h1>Mounting &amp; unlocking two drives at startup with PGP WDE</h1><div><p>I&#8217;ve got a Macbook Pro which I use for everything.  I live in apps that use a lot of resources like Photoshop, Xcode and Powerpoint.  Speed is important to me and the biggest limiting factor is my HD.  So I pulled out the absolutely useless Macbook Pro DVD drive and replaced with it a HD.  My boot drive is an SSD drive which means fast boot times and fast application load times.  My home folder resides on the 2nd hard drive which has more space and it better suited for lots of reads and writes than a SSD drive.</p>
+
+<p>This configuration is great, but makes security difficult.  I want encrypted drives so that I rest assured that if I ever loose my notebook, the source code and other valuable documents that I carry around is safe.  I am a PGPWDE (PGP Whole Disk Encryption) user and I&#8217;ve used WDE fairly successfully with a single drive setup, but read really bad things about using it for a dual drive setup.  You see the problem is that your home folder resides on a 2nd disk that doesn’t get mounted until you enter your password after logging in.  This can cause all sorts of problems with the worst of it being corruption.</p>
+
+<p>Playing around with the PGP command line, I was able to find a way to not only encrypt both drives using WDE, but have them both mount after logging into the bootloader and before the OS even loads.</p>
+
+<p>This setup is actually pretty simple.  It takes advantage of a feature called Drive Groups for which there is no documentation anywhere.  Here are the steps:</p>
+
+<ul><li>Encrypt your boot drive normally.  Lets call this Disk 0.  When it is encrypted, you should have a boot loader screen asking you for your PGP password at bootup.  Now you are ready to go to the next step.</li>
+</ul><p><img src="http://i.imgur.com/uxiQT.png" alt="http://i.imgur.com/uxiQT.png"/></p>
+
+<ul><li><p>You need to encrypt the 2nd drive (the one with your home folder) but you&#8217;ll want to do it via the command line using the add group option:</p>
+
+<pre> pgpwde —add-group-disk —base-disk (put your boot disk #) —disk (put the 2nd disk #) —auto   —passphrase ‘password’ —user ‘your name’</pre></li>
+</ul><p><img src="http://i.imgur.com/RJMUh.png" alt="http://i.imgur.com/RJMUh.png"/></p>
+
+<p>That should cause your 2nd disk to start encrypting.  It is also instrumented to the bootloader so when you login, it is automatically decrypted and mounted.</p>
+
+<p>These instructions seems to work fine for Mac OS X Snow Leopard.  I haven’t tried it on any other OS, but because this is all happening before the OS loads, I assume it should work for Windows and Linux.</p></div>    </body>
+</html>

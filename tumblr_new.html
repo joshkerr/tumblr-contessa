@@ -85,8 +85,7 @@
 	
 <script src="http://www.google.com/jsapi?key={text:Google API Key}" type="text/javascript">
 	</script>
-<style type="text/css">
-	
+<style type="text/css">	
 	{CustomCSS}
 </style>
 	
@@ -180,7 +179,7 @@
 					{block:Date}{ShortMonth} {DayOfMonth}, {Year}{/block:Date}
 						</time>
 						
-						{block:Date}| <a href="{Permalink}#disqus_thread">Second article</a>{/block:Date}
+						{block:Date}| <a href="{Permalink}#disqus_thread">Comments</a>{/block:Date}
 						
 					</p>
 			</header>
@@ -296,13 +295,23 @@
 			{/block:IfShowFacebookButtons}							
 		</div>
 		
-				{/block:PermalinkPage}
 		
 		
 		
+
+		
+		
+		{/block:PermalinkPage}
+		
+		
+					<script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>
 		
 		</article>
   
+  	  	{block:PermalinkPage}
+			{block:Permalink}<div id="disqus_thread"></div>{/block:Permalink}
+		{/block:PermalinkPage}
+		
  
   
   
@@ -427,7 +436,6 @@
 </script>
 {/block:IfShowPinterestButtons}
 
-			<script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>{block:Permalink}<div id="disqus_thread"></div>
 			<script type="text/javascript">
 			  /**
 			    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
@@ -440,7 +448,9 @@
 			</script>
 			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=joshkerr">comments powered by Disqus.</a></noscript>
 			<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-			{/block:Permalink}<script type="text/javascript">
+
+			
+			<script type="text/javascript">
 			var disqus_shortname = 'joshkerr';
 			(function () {
 			  var s = document.createElement('script'); s.async = true;

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <!-- BEGIN TUMBLR XML
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <post id="17160800981" url="http://joshkerr.com/post/17160800981" url-with-slug="http://joshkerr.com/post/17160800981/etched-effects-in-photoshop" type="regular" date-gmt="2012-02-06 18:19:00 GMT" date="Mon, 06 Feb 2012 12:19:00" unix-timestamp="1328552340" format="html" reblog-key="KciziGSK" slug="etched-effects-in-photoshop"><regular-title>Etched effects in Photoshop</regular-title><regular-body>&lt;p&gt;&lt;a href="http://farm8.staticflickr.com/7161/6830359809_72d0a162a2_o.jpg"&gt;http://farm8.staticflickr.com/7161/6830359809_72d0a162a2_o.jpg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;My previous Photoshop tutorial on &lt;a href="http://mattgemmell.com/2012/01/29/subtle-ui-texture-in-photoshop/"&gt;using noise for subtle texture&lt;/a&gt; was well received, so I’ve decided to write more. This time, we’re creating an etched effect (in this case, for text on a metallic background, but it’ll work for any background and is equally applicable to icons and other shapes, as well as text).&lt;/p&gt;
+&lt;p&gt;It’s exceptionally easy to create an etched effect, since we only need to replicate two aspects of how shapes look in the real world when they’re cut into a surface:&lt;/p&gt;
+&lt;ol&gt;&lt;li&gt;The natural shadows inside the cut-out part.&lt;/li&gt;
+&lt;li&gt;The subtle pools of light falling onto the front edges of the cut-out part.&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;To start, create a new document and fill it with a suitable background. I chose a simple gradient layer with a grey gradient, to give a basically metallic appearance. I then added some text, and made it &lt;strong&gt;a bit darker than the darkest colour used in the gradient&lt;/strong&gt;.&lt;/p&gt;
+&lt;div&gt;&lt;a href="http://www.flickr.com/photos/mattgemmell/6830359809/" title="Some text, with a gradient background by Matt Gemmell, on Flickr"&gt;&lt;img alt="Some text, with a gradient background" height="100" src="http://farm8.staticflickr.com/7161/6830359809_72d0a162a2_o.jpg" width="344"/&gt;&lt;/a&gt;
+&lt;p&gt;Some text, with a gradient in the background.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We only need to apply two effects to create the etched effect; one for each of the visual factors I mentioned previously. First, we create the interior shadow using the &lt;strong&gt;Inner Shadow layer effect&lt;/strong&gt;.&lt;/p&gt;
+&lt;div&gt;&lt;a href="http://www.flickr.com/photos/mattgemmell/6830359997/" title="Inner Shadow settings by Matt Gemmell, on Flickr"&gt;&lt;img alt="Inner Shadow settings" height="196" src="http://farm8.staticflickr.com/7160/6830359997_a59aa321a0_o.jpg" width="323"/&gt;&lt;/a&gt;
+&lt;p&gt;Inner Shadow settings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;You can tweak the settings to adjust the apparent visual depth of the etching, but I find that a &lt;strong&gt;Distance of 2 pixels&lt;/strong&gt; and a &lt;strong&gt;Size of 4 pixels&lt;/strong&gt; works well for a believable effect. Make sure you set the &lt;strong&gt;light angle to 90 degrees&lt;/strong&gt; if you’re designing for iOS, or whatever global light angle your particular target platform simulates.&lt;/p&gt;
+&lt;p&gt;Next, we need to replicate the effect of light spilling a little way into the carved-out shapes. Interestingly, we can do this by making unconventional use of the &lt;strong&gt;Drop Shadow layer effect&lt;/strong&gt;.&lt;/p&gt;
+&lt;div&gt;&lt;a href="http://www.flickr.com/photos/mattgemmell/6830360099/" title="Drop Shadow settings by Matt Gemmell, on Flickr"&gt;&lt;img alt="Drop Shadow settings" height="198" src="http://farm8.staticflickr.com/7145/6830360099_446d33d1cf_o.jpg" width="325"/&gt;&lt;/a&gt;
+&lt;p&gt;Drop Shadow settings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;By changing the shadow to &lt;strong&gt;pure white&lt;/strong&gt;, with a &lt;strong&gt;Normal blending mode&lt;/strong&gt;, and making it only &lt;strong&gt;1 pixel in Size&lt;/strong&gt; and &lt;strong&gt;1 pixel in Distance&lt;/strong&gt; from the layer’s contents, we can create the impression of some light reflecting along the bottom edge of whatever is in the layer (the text, in our case).&lt;/p&gt;
+&lt;p&gt;Both those styles put together create a pretty decent etched effect for the text, as shown below.&lt;/p&gt;
+&lt;div&gt;&lt;a href="http://www.flickr.com/photos/mattgemmell/6830359905/" title="The final etched effect by Matt Gemmell, on Flickr"&gt;&lt;img alt="The final etched effect" height="100" src="http://farm8.staticflickr.com/7174/6830359905_c935286157_o.jpg" width="344"/&gt;&lt;/a&gt;
+&lt;p&gt;The final etched effect.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The same Layer Style can be copied and pasted onto any other shape or icon you like - it’s great for titlebars and similar interfaces. You can &lt;a href="http://mattgemmell.com/files/etching.zip"&gt;download the finished etched effect as a zipped PSD here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you’re interested in more beginners’ UI effects tutorials for Photoshop, &lt;a href="http://twitter.com/mattgemmell"&gt;follow me on Twitter&lt;/a&gt; and let me know.&lt;/p&gt;
+&lt;p&gt;&lt;img height="1" src="http://feeds.feedburner.com/~r/mattgemmell/rss2/~4/Opy0VI3NhX8" width="1"/&gt;Via ( &lt;a href="http://mattgemmell.com/2012/02/06/etched-effects-in-photoshop/?utm_source=feedburner&amp;amp;utm_medium=feed&amp;amp;utm_campaign=Feed%3A+mattgemmell%2Frss2+%28Matt+Legend+Gemmell+-+RSS2%29"&gt;Matt Gemmell )&lt;/a&gt;&lt;/p&gt;</regular-body><tag>Google Reader</tag></post>
+
+        END TUMBLR XML -->
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta name="generator" content="Tumblr Backup 0.3" />
+    	<meta name="backup-date" content="Wed, 08 Feb 12 12:35:41 -0500" />
+    	<link rel="stylesheet" href="../style.css"/>
+    	<link rel="icon" href="../avatar.png"/>
+    </head>
+    <body class="regular_body">
+                
+        <div class="post_meta">
+            <span class="timestamp">February 6, 2012, 12:19 pm</span>
+            
+        </div>
+        
+        <h1>Etched effects in Photoshop</h1><div><p><a href="http://farm8.staticflickr.com/7161/6830359809_72d0a162a2_o.jpg">http://farm8.staticflickr.com/7161/6830359809_72d0a162a2_o.jpg</a></p>
+<p>My previous Photoshop tutorial on <a href="http://mattgemmell.com/2012/01/29/subtle-ui-texture-in-photoshop/">using noise for subtle texture</a> was well received, so I’ve decided to write more. This time, we’re creating an etched effect (in this case, for text on a metallic background, but it’ll work for any background and is equally applicable to icons and other shapes, as well as text).</p>
+<p>It’s exceptionally easy to create an etched effect, since we only need to replicate two aspects of how shapes look in the real world when they’re cut into a surface:</p>
+<ol><li>The natural shadows inside the cut-out part.</li>
+<li>The subtle pools of light falling onto the front edges of the cut-out part.</li>
+</ol><p>To start, create a new document and fill it with a suitable background. I chose a simple gradient layer with a grey gradient, to give a basically metallic appearance. I then added some text, and made it <strong>a bit darker than the darkest colour used in the gradient</strong>.</p>
+<div><a href="http://www.flickr.com/photos/mattgemmell/6830359809/" title="Some text, with a gradient background by Matt Gemmell, on Flickr"><img alt="Some text, with a gradient background" height="100" src="http://farm8.staticflickr.com/7161/6830359809_72d0a162a2_o.jpg" width="344"/></a>
+<p>Some text, with a gradient in the background.</p>
+</div>
+<p>We only need to apply two effects to create the etched effect; one for each of the visual factors I mentioned previously. First, we create the interior shadow using the <strong>Inner Shadow layer effect</strong>.</p>
+<div><a href="http://www.flickr.com/photos/mattgemmell/6830359997/" title="Inner Shadow settings by Matt Gemmell, on Flickr"><img alt="Inner Shadow settings" height="196" src="http://farm8.staticflickr.com/7160/6830359997_a59aa321a0_o.jpg" width="323"/></a>
+<p>Inner Shadow settings.</p>
+</div>
+<p>You can tweak the settings to adjust the apparent visual depth of the etching, but I find that a <strong>Distance of 2 pixels</strong> and a <strong>Size of 4 pixels</strong> works well for a believable effect. Make sure you set the <strong>light angle to 90 degrees</strong> if you’re designing for iOS, or whatever global light angle your particular target platform simulates.</p>
+<p>Next, we need to replicate the effect of light spilling a little way into the carved-out shapes. Interestingly, we can do this by making unconventional use of the <strong>Drop Shadow layer effect</strong>.</p>
+<div><a href="http://www.flickr.com/photos/mattgemmell/6830360099/" title="Drop Shadow settings by Matt Gemmell, on Flickr"><img alt="Drop Shadow settings" height="198" src="http://farm8.staticflickr.com/7145/6830360099_446d33d1cf_o.jpg" width="325"/></a>
+<p>Drop Shadow settings.</p>
+</div>
+<p>By changing the shadow to <strong>pure white</strong>, with a <strong>Normal blending mode</strong>, and making it only <strong>1 pixel in Size</strong> and <strong>1 pixel in Distance</strong> from the layer’s contents, we can create the impression of some light reflecting along the bottom edge of whatever is in the layer (the text, in our case).</p>
+<p>Both those styles put together create a pretty decent etched effect for the text, as shown below.</p>
+<div><a href="http://www.flickr.com/photos/mattgemmell/6830359905/" title="The final etched effect by Matt Gemmell, on Flickr"><img alt="The final etched effect" height="100" src="http://farm8.staticflickr.com/7174/6830359905_c935286157_o.jpg" width="344"/></a>
+<p>The final etched effect.</p>
+</div>
+<p>The same Layer Style can be copied and pasted onto any other shape or icon you like - it’s great for titlebars and similar interfaces. You can <a href="http://mattgemmell.com/files/etching.zip">download the finished etched effect as a zipped PSD here</a>.</p>
+<p>If you’re interested in more beginners’ UI effects tutorials for Photoshop, <a href="http://twitter.com/mattgemmell">follow me on Twitter</a> and let me know.</p>
+<p><img height="1" src="http://feeds.feedburner.com/~r/mattgemmell/rss2/~4/Opy0VI3NhX8" width="1"/>Via ( <a href="http://mattgemmell.com/2012/02/06/etched-effects-in-photoshop/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+mattgemmell%2Frss2+%28Matt+Legend+Gemmell+-+RSS2%29">Matt Gemmell )</a></p></div>    </body>
+</html>
